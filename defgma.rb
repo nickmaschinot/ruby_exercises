@@ -2,28 +2,25 @@
 bye=0
 
 while bye < 3
-print "Say hi to grandma "
+puts "Say hi to grandma "
 response = gets.chomp
-if response == "BYE"
-  bye+=1
-   if bye < 3
-     print "I did not hear anything "
-   end
-elsif response == response.upcase
-  year = 1950 - rand * 20
-  print "NO, NOT SINCE #{year} "
-    if bye > 0
-      bye -= 1
-    end
-else
-  print "Huh? speak louder "
-    if bye > 0
-      bye -= 1
-    end
-end
+
+  if response == "BYE"
+      bye+=1
+      if bye < 3
+        puts "I did not hear anything "
+      end
+    elsif response == response.upcase
+      year = rand(1930...1950)
+      puts "NO, NOT SINCE #{year} "
+        bye = 0
+    else
+      puts "Huh? speak louder "
+        bye = 0
+  end
 
   if bye == 3
-    print "Oh well, if you have to leave "
+    puts "Oh well, if you have to leave "
   end
 
 end
