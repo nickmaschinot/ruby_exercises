@@ -1,9 +1,8 @@
 puts "What is your starting year?"
-start_year = gets.chomp
-start_year = start_year.to_i
+start_year = gets.chomp.to_i
 puts "what is your end year?"
-end_year = gets.chomp
-end_year = end_year.to_i
+end_year = gets.chomp.to_i
+
 
 while start_year <= end_year
    if start_year % 400 == 0
@@ -12,8 +11,6 @@ while start_year <= end_year
       print ""
     elsif start_year % 4 == 0
       puts start_year
-    else
-      print ""
    end
    start_year += 1
 end
