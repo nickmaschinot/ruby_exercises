@@ -15,7 +15,14 @@ def romanizer number
   number = number - v * 5
   i = number.to_i
 
-    puts "M" * m + "D" * d + "C" * c + "L" * l + "X" * x + "V" * v + "I" * i
+    roman_numeral = "M" * m + "D" * d + "C" * c + "L" * l + "X" * x + "V" * v + "I" * i
+    roman_numeral.sub! 'DCCCC', 'CM'
+    roman_numeral.sub! 'CCCC', 'CD'
+    roman_numeral.sub! 'CXXXX', 'XC'
+    roman_numeral.sub! 'XXXX', 'XL'
+    roman_numeral.sub! 'VIIII', 'IX'
+    roman_numeral.sub! 'IIII', 'IV'
+    puts roman_numeral
 
 end
 
