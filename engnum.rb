@@ -1,6 +1,5 @@
 
-puts "give me a number and I'll give it back in Roman Numerals (Using up to 4-digits)"
-puts ""
+puts "give me a number and I'll give it back using words (Using up to 4-digits)"
 
 
 def english_number number
@@ -18,7 +17,7 @@ def english_number number
   if number < 0
     sign = "negative-"
   elsif number == 0
-    puts 0
+    puts "zero"
   end
 
   number = number.abs
@@ -39,9 +38,9 @@ def english_number number
   htrig = 0
 
   t = number/1000000000000
-    if t > 1
+    if t >= 1
       ttrig = 5
-      if t > 100
+      if t >= 100
         thrig = 1
       end
     end
@@ -52,9 +51,9 @@ def english_number number
      tt = tn/10
      tn = tn - tt * 10
   b = number/1000000000
-    if b > 1
+    if b >= 1
       btrig = 4
-      if b > 100
+      if b >= 100
         bhrig = 1
       end
       end
@@ -65,9 +64,9 @@ def english_number number
      bt = bn/10
      bn = bn - bt * 10
   m = number/1000000
-    if m > 1
+    if m >= 1
       mtrig = 3
-      if m > 100
+      if m >= 100
         mhrig = 1
       end
       end
@@ -78,9 +77,9 @@ def english_number number
      mt = mn/10
      mn = mn - mt * 10
   d = number/1000
-    if d > 1
+    if d >= 1
       dtrig = 2
-      if d > 100
+      if d >= 100
         dhrig = 1
       end
       end
@@ -91,7 +90,7 @@ def english_number number
      dt = dn/10
      dn = dn - dt * 10
   h = number/100
-     if h > 1
+     if h >= 1
        htrig = 1
      end
   number = number - h * 100
