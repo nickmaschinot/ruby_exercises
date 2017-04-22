@@ -1,19 +1,19 @@
-puts "give me a number and I will give it back in Roman Numerals (Using up to 4-digits)"
+puts "give me a number and I'll give it back in Roman Numerals (Using up to 4-digits)"
 
 def romanizer number
-  m = number/1000.to_i
+  m = number/1000
   number = number - m * 1000
-  d = number/500.to_i
+  d = number/500
   number = number - d * 500
-  c = number/100.to_i
+  c = number/100
   number = number - c * 100
-  l = number/50.to_i
+  l = number/50
   number = number - l * 50
-  x = number/10.to_i
+  x = number/10
   number = number - x * 10
-  v = number/5.to_i
+  v = number/5
   number = number - v * 5
-  i = number.to_i
+  i = number
 
     roman_numeral = "M" * m + "D" * d + "C" * c + "L" * l + "X" * x + "V" * v + "I" * i
     roman_numeral.sub! 'DCCCC', 'CM'
@@ -22,6 +22,8 @@ def romanizer number
     roman_numeral.sub! 'XXXX', 'XL'
     roman_numeral.sub! 'VIIII', 'IX'
     roman_numeral.sub! 'IIII', 'IV'
+
+    puts "Here is your new Roman Numeral"
     puts roman_numeral
 
 end
@@ -29,3 +31,6 @@ end
 number = gets.chomp.to_i
 
 romanizer number
+
+
+puts 9/2
