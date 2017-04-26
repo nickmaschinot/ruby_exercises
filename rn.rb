@@ -94,7 +94,6 @@ while true
   if input == "A"
     puts "give me a number and I'll give it back in Roman Numerals (Using up to 4-digits)"
     number = gets.chomp.to_i
-    puts number * number
     if number == "0"
       puts "Please only input positive integers"
       number = "X"
