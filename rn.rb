@@ -93,12 +93,14 @@ input = gets.chomp.upcase
 while true
   if input == "A"
     puts "give me a number and I'll give it back in Roman Numerals (Using up to 4-digits)"
-    number = gets.chomp.to_i
-    if number == "0"
+    number = gets.chomp.to_s.downcase
+    if number.count("a-z") > 0
       puts "Please only input positive integers"
-      number = "X"
+    else
+      number = number.to_i
+      romanizer number
     end
-    romanizer number
+
   elsif input == "B"
     puts "give me a Roman Numeral and I'll give it back in base-10"
     nvmber = gets.chomp.to_s
