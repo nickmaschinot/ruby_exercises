@@ -1,16 +1,17 @@
 
 
 hash = {
-  "Christopher Alexander: " => "Oct 4, 1936",
-  "Christopher Lambert: "   => "Mar 29, 1957",
-  "Christopher Lee: "       => "May 27, 1922",
-  "Christopher Lloyd: "     => "Oct 22, 1938",
-  "Christopher Pine: "      => "Aug 3, 1976",
-  "Christopher Plummer: "   => "Dec 13, 1927",
-  "Christopher Walken: "    => "Mar 31, 1938",
+  "Christopher Alexander" => "Oct 4, 1936",
+  "Christopher Lambert"   => "Mar 29, 1957",
+  "Christopher Lee"       => "May 27, 1922",
+  "Christopher Lloyd"     => "Oct 22, 1938",
+  "Christopher Pine"      => "Aug 3, 1976",
+  "Christopher Plummer"   => "Dec 13, 1927",
+  "Christopher Walken"    => "Mar 31, 1938",
+  "Lili"                  => "Jul 3, 1992",
+  "Nick"                  => "Dec 9, 1988"
 }
 
-hash.each { |key, date| puts key date }
 
 months = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul",
           "aug", "sept", "oct", "nov", "dec"]
@@ -21,13 +22,13 @@ months = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul",
 def b_day_search hash, key
   months = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul",
             "aug", "sept", "oct", "nov", "dec"]
-  hash.each do |key, b_day|
-    puts hash[key]
+  #hash.each do |key, b_day|
+    puts "Name: #{key}"
+    puts "DOB: #{hash[key]}"
     b_day = hash[key]
     b_day = b_day.downcase
     b_day = b_day.split(/\W+/)
 
-    puts b_day
     mon = months.index("#{b_day[0]}")
     day = b_day[1].to_i
     year = b_day[2].to_i
@@ -59,13 +60,26 @@ def b_day_search hash, key
     puts "Their next birthday is on #{next_b_day}"
     # add this new info to the hash
 
-    puts dob
+    puts ""
 
-    puts mon
-
-  end
+  #end
   puts hash["Christopher Alexander: "]
   # make it so only the requested individual is displayed
 end
 
-b_day_search hash
+puts "Please input a name from the database, or type QUIT"
+name = gets.chomp
+
+while true
+  if hash.key?(name)
+    puts "Information found:"
+    b_day_search hash, name
+  elsif name == "QUIT"
+    puts "Goodbye"
+    break
+  else
+    puts "Person not found. Please input a name from the database, or type QUIT"
+  end
+  puts "Search again? or QUIT?"
+  name = gets.chomp
+end
