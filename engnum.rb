@@ -127,7 +127,7 @@ def english_number (number)
 end
 
 while true
-  number = gets.chomp
+  number = gets.chomp.downcase
   puts "give me a number and I'll give it back using words (Using up to 15 digits)"
   if number.count("a-z") > 0
     puts "Please only input integers"
