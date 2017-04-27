@@ -1,6 +1,4 @@
 
-
-
 new_number = ["x", "x", "y", "x"]
 
 counts = Hash.new 0
