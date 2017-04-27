@@ -1,5 +1,6 @@
 table_of_contents = [["Chapter 1: ", "Getting Started", "page 1"],
-["Chapter 2: ", "Numbers", "page 9"],["Chapter 3: ", "Letters", "page 13"]]
+                     ["Chapter 2: ", "Numbers", "page 9"],
+                     ["Chapter 3: ", "Letters", "page 13"]]
 line_width = 60
 
 title = "Table of Contents"
