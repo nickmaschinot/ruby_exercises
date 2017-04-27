@@ -1,13 +1,8 @@
 
 def how_long_til(year, month, day, hour, minute, second, til)
-
-start = Time.local(year, month, day, hour, minute, second)
-
-onebil = start + til
-
+  start = Time.local(year, month, day, hour, minute, second)
+  onebil = start + til
 end
-
-#puts how_long_til(1992, 7, 3, 15, 43, 12, 1000000000)
 
 def happy_birthday(year, month, day)
   b_day = Time.local(year, month, day)
