@@ -69,6 +69,7 @@ end
 
 puts "Please input a name from the database, or type QUIT"
 name = gets.chomp
+puts ""
 
 while true
   if hash.key?(name)
