@@ -1,7 +1,6 @@
 
 puts "give me a number and I'll give it back using words (Using up to 15 digits)"
 
-
 def english_number (number)
   ones_place = ["", "one ", "two ", "three ", "four ", "five ",
                 "six ", "seven ", "eight ", "nine "]
@@ -122,7 +121,6 @@ def english_number (number)
 
   puts "Here is your number:"
   puts answer
-
 
 end
 
