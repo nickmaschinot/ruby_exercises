@@ -74,6 +74,7 @@ while true
     nvmber = gets.chomp.to_s.upcase
       if nvmber.count("A-B") > 0 || nvmber.count("E-H") > 0 ||
          nvmber.count("J-K") > 0 || nvmber.count("N-U") > 0 ||
+         nvmber.count("W") > 0 || nvmber.count("Y-Z") > 0 ||
          nvmber.include?("IM") || nvmber.include?("ID") || nvmber.include?("IC") ||
          nvmber.include?("IL") || nvmber.include?("VM") || nvmber.include?("VD") ||
          nvmber.include?("VC") || nvmber.include?("VL") || nvmber.include?("VX") ||
