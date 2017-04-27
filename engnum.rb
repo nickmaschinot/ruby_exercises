@@ -1,8 +1,8 @@
 
-puts "give me a number and I'll give it back using words (Using up to 4-digits)"
+puts "give me a number and I'll give it back using words (Using up to 15 digits)"
 
 
-def english_number number
+def english_number (number)
   ones_place = ["", "one ", "two ", "three ", "four ", "five ",
                 "six ", "seven ", "eight ", "nine "]
   teens = ["", "eleven ", "twelve", "thirteen ", "fourteen ", "fifteen ", "sixteen ",
@@ -12,7 +12,6 @@ def english_number number
   higher_place = ["", "hundred ", "thousand ", "million ", "billion ", "trillion "]
 
   sign = ""
-
 
   if number < 0
     sign = "negative-"
@@ -45,11 +44,11 @@ def english_number number
       end
     end
   number = number - t * 1000000000000
-     tn = t
-     th = tn/100
-     tn = tn - th * 100
-     tt = tn/10
-     tn = tn - tt * 10
+    tn = t
+    th = tn/100
+    tn = tn - th * 100
+    tt = tn/10
+    tn = tn - tt * 10
 
   b = number/1000000000
     if b >= 1
@@ -59,11 +58,11 @@ def english_number number
       end
     end
   number = number - b * 1000000000
-     bn = b
-     bh = bn/100
-     bn = bn - bh * 100
-     bt = bn/10
-     bn = bn - bt * 10
+    bn = b
+    bh = bn/100
+    bn = bn - bh * 100
+    bt = bn/10
+    bn = bn - bt * 10
 
   m = number/1000000
     if m >= 1
@@ -73,11 +72,11 @@ def english_number number
       end
     end
   number = number - m * 1000000
-     mn = m
-     mh = mn/100
-     mn = mn - mh * 100
-     mt = mn/10
-     mn = mn - mt * 10
+    mn = m
+    mh = mn/100
+    mn = mn - mh * 100
+    mt = mn/10
+    mn = mn - mt * 10
 
   d = number/1000
     if d >= 1
@@ -87,12 +86,12 @@ def english_number number
       end
     end
   number = number - d * 1000
-     dn = d
-     dh = dn/100
-     dn = dn - dh * 100
-     dt = dn/10
-     dn = dn - dt * 10
-     
+    dn = d
+    dh = dn/100
+    dn = dn - dh * 100
+    dt = dn/10
+    dn = dn - dt * 10
+
   h = number/100
     if h >= 1
       htrig = 1
@@ -109,17 +108,17 @@ def english_number number
   higher_place[dhrig] + tens_place[dt] + ones_place [dn] + higher_place[dtrig] +
   ones_place[h] + higher_place[htrig] + tens_place[x] + ones_place[n]
 
-      answer.gsub! "ten nine", "nineteen"
-      answer.gsub! "ten eight", "eighteen"
-      answer.gsub! "ten seven", "seventeen"
-      answer.gsub! "ten six", "sixteen"
-      answer.gsub! "ten five", "fifteen"
-      answer.gsub! "ten four", "fourteen"
-      answer.gsub! "ten three", "thirteen"
-      answer.gsub! "ten two", "twelve"
-      answer.gsub! "ten one", "eleven"
-      answer.gsub! " ", "-"
-      answer = answer.chop
+    answer.gsub! "ten nine", "nineteen"
+    answer.gsub! "ten eight", "eighteen"
+    answer.gsub! "ten seven", "seventeen"
+    answer.gsub! "ten six", "sixteen"
+    answer.gsub! "ten five", "fifteen"
+    answer.gsub! "ten four", "fourteen"
+    answer.gsub! "ten three", "thirteen"
+    answer.gsub! "ten two", "twelve"
+    answer.gsub! "ten one", "eleven"
+    answer.gsub! " ", "-"
+    answer = answer.chop
 
   puts "Here is your number:"
   puts answer
@@ -127,6 +126,17 @@ def english_number number
 
 end
 
-number = gets.chomp.to_i
-
-english_number number
+while true
+  number = gets.chomp
+  puts "give me a number and I'll give it back using words (Using up to 15 digits)"
+  if number.count("a-z") > 0
+    puts "Please only input integers"
+  elsif number == "QUIT"
+    puts "Goodbye"
+    break
+  else
+    number = number.to_i
+    english_number (number)
+  end
+  puts "try again? or QUIT?"
+end

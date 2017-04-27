@@ -13,6 +13,6 @@ while counter < 1
    input = ""
  end
 end
-#words = text.split(" ")
+
 text = text.sort
 puts text
