@@ -5,6 +5,4 @@ array = array.map!(&:to_s)
 array = array.map!(&:downcase)
 array = array.sort
 
-
-
 puts array
