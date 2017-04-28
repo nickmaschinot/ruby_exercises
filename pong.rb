@@ -67,7 +67,7 @@ bdirection = rand(0..1)
 
 while true
 
-  puts "use 'W', and 'S' to move the paddle around to block the ball"
+  puts "use 'W', and 'S' to move the paddle around to block the ball, or 'D' to wait"
   direction = gets.chomp.upcase
 
   if direction == "W"
@@ -82,6 +82,8 @@ while true
       y = 18
     end
     board[y-5][x] = " "
+  elsif direction == "D"
+    puts "wait"
   else
     puts "Please use WASD"
   end
@@ -95,9 +97,15 @@ while true
   if bdirection == 0
     by += 1
     bx -= 1
-    board[by-1][bx+1] = "*"
+    board[by-1][bx+1] = " "
     board[by][bx] = "B"
-    if by+1 == 19
+    if board[by+1][bx-1] == "H"
+      bdirection = 3
+    elsif bx-1 == 0
+      board[by+1][bx-1] = "B"
+      puts "you lose!"
+      return
+    elsif by+1 == 19
       bdirection = 1
     end
 
@@ -105,7 +113,7 @@ while true
   elsif bdirection == 1
       by -= 1
       bx -= 1
-      board[by+1][bx+1] = "*"
+      board[by+1][bx+1] = " "
       board[by][bx] = "B"
       if board[by-1][bx-1] == "H"
       bdirection = 2
@@ -113,47 +121,34 @@ while true
       puts "you lose!"
       return
       elsif by-1 == 0
-        bdirection = 4
+        bdirection = 0
       end
 
 
   elsif bdirection == 2
       by -= 1
       bx += 1
-      board[by+1][bx-1] = "*"
+      board[by+1][bx-1] = " "
       board[by][bx] = "B"
       if by-1 == 0
         bdirection = 3
+      elsif bx+1 == 20
+        bdirection = 1
       end
 
 
     elsif bdirection == 3
       by += 1
       bx += 1
-      board[by-1][bx-1] = "*"
+      board[by-1][bx-1] = " "
       board[by][bx] = "B"
       if bx+1 == 20 && by+1 == 19
       bdirection = 1
       elsif bx+1 == 20
       bdirection = 0
       end
-
-    elsif bdirection == 4
-      by += 1
-      bx -= 1
-      board[by-1][bx+1] = "*"
-      board[by][bx] = "B"
-      if board[by+1][bx-1] == "H"
-        bdirection = 5
-      elsif bx-1 == 0
-        board[by+1][bx-1] = "B"
-        puts "you lose!"
-        return
-      elsif by-1 == 19
-        bdirection = 1
-      end
     end
-  
+
 
 
 
