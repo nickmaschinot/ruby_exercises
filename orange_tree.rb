@@ -49,7 +49,7 @@ class OrangeTree
       puts "#{@name} was #{@age} years old"
       $counter = 0
       return
-    elsif @sick == 1 && rand(1..100) > 30
+    elsif @sick == 1 && rand(1..100) >= 30
       puts "#{@name} has recovered from it's illness!"
       @sick = 0
       @health += 5
@@ -100,13 +100,13 @@ while x == true
     while $counter > 0
       puts "Would you like to 'water', 'measure', 'count oranges', or 'eat an orange'?"
       input = gets.chomp.downcase
-      if input == "water"
+      if input == "water" || input == "water "
         ot.water
-      elsif input == "measure"
+      elsif input == "measure" || input == "measure "
         ot.measure_tree
-      elsif input == "count oranges"
+      elsif input == "count oranges" || input == "count oranges "
         ot.count_the_oranges
-      elsif input == "eat an orange"
+      elsif input == "eat an orange" || input == "eat an orange "
         ot.eat_an_orange
       else
         puts "please use one of the four listed inputs"
@@ -114,7 +114,7 @@ while x == true
     end
   puts "plant another tree? yes or no?"
   elsif response == "no"
-    x = false 
+    x = false
   else
     puts "please answer yes or no"
   end
