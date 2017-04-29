@@ -65,6 +65,15 @@ end
 
 bdirection = rand(0..1)
 
+
+#puts "set difficulty: 'easy' or 'hard'?"
+#difficulty = gets.chomp.upcase
+#if difficulty == "easy"
+#  puts "easy does it"
+#elsif difficulty
+
+
+
 while true
 
   puts "use 'W', and 'S' to move the paddle around to block the ball, or 'D' to wait"
@@ -82,7 +91,7 @@ while true
       y = 18
     end
     board[y-5][x] = " "
-  elsif direction == "D"
+  elsif direction == ""
     puts "wait"
   else
     puts "Please use WASD"
@@ -154,5 +163,7 @@ while true
 
   board.each do | item |
     puts item.join(" ")
+
+
   end
 end
