@@ -2,8 +2,8 @@
 $board=[]
 
 
-b1 = ["|", "-", "-", "-", "-", "-", "-", "-", "-", "-",
-      "-", "|"]
+b1 = ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ",
+      " ", "|"]
 b2 = ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ",
       " ", "|"]
 b3 = ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ",
@@ -670,17 +670,104 @@ def bend_L
 
       elsif direction == "W"
         position = 2
-        $board[y][x-1] = " "
+        $board[y+1][x+1] = " "
         $board[y][x+1] = " "
-        $board[y][x+2] = " "
-        $board[y][x] = "Y"
-        $board[y-1][x] = "Y"
-        $board[y+1][x] = "Y"
-        $board[y+2][x] = "Y"
+        $board[y][x-1] = " "
+        $board[y][x] = "W"
+        $board[y-1][x] = "W"
+        $board[y+1][x] = "W"
+        $board[y-1][x+1] = "W"
 
         $board.each do | item |
           puts item.join(" ")
         end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 2
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-2][x+2] = " "
+        $board[y][x+1] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y-2][x+1] = " "
+
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-2][x] = " "
+        $board[y-2][x-1] = " "
+        $board[y-1][x-1] = " "
+        $board[y][x-1] = " "
+
+      elsif direction == "W"
+        position = 3
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y+1][x] = " "
+        $board[y][x] = "W"
+        $board[y][x-1] = "W"
+        $board[y-1][x-1] = "W"
+        $board[y][x+1] = "W"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 3
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x] = " "
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x+2] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-2][x-2] = " "
+        $board[y-1][x-2] = " "
+        $board[y-1][x] = " "
+        if x == 10
+          $board[y-1][x-1] = " "
+        end
+
+      elsif direction == "W"
+        position = 0
+        $board[y-1][x-1] = " "
+        $board[y][x-1] = " "
+        $board[y][x+1] = " "
+        $board[y][x] = "W"
+        $board[y-1][x] = "W"
+        $board[y+1][x] = "W"
+        $board[y+1][x-1] = "W"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
       else
         puts "Please use WASD"
       end
@@ -729,8 +816,598 @@ def bend_L
       $board[y][x+1] = "W"
       $board[y][x-1] = "W"
       $board[y+1][x+1] = "W"
+    end
 
-  
+    if position == 2
+
+      if x-1 == -1
+        x = 1
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "W"
+      $board[y-1][x] = "W"
+      $board[y+1][x] = "W"
+      $board[y-1][x+1] = "W"
+    end
+
+    if position == 3
+
+      if x-1 == 0
+        x = 2
+      end
+      if y+1 == 22
+        y = 20
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "W"
+      $board[y][x-1] = "W"
+      $board[y-1][x-1] = "W"
+      $board[y][x+1] = "W"
+    end
+
+
+    $board.each do | item |
+      puts item.join(" ")
+    end
+  end
+end
+
+def bend_R
+  y = 2
+  x = 5
+  position = 0
+
+  $board[y][x] = "X"
+  $board[y-1][x] = "X"
+  $board[y+1][x] = "X"
+  $board[y+1][x+1] = "X"
+
+  $board.each do | item |
+    puts item.join(" ")
+  end
+
+  while true
+    puts "use 'A', 'S' and 'D' to move the block, or 'W' to rotate"
+    direction = gets.chomp.upcase
+
+    if position == 0
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-1][x+1] = " "
+        $board[y][x+1] = " "
+        $board[y][x+2] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y][x+1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-1] = " "
+        $board[y-2][x-1] = " "
+        $board[y][x-1] = " "
+        if x == 10
+          $board[y][x] = " "
+        end
+
+      elsif direction == "W"
+
+        position = 1
+        $board[y-1][x] = " "
+        $board[y+1][x] = " "
+        $board[y+1][x+1] = " "
+        $board[y][x] = "X"
+        $board[y][x+1] = "X"
+        $board[y][x-1] = "X"
+        $board[y-1][x+1] = "X"
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 1
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-1][x] = " "
+        $board[y-1][x+2] = " "
+        $board[y-2][x+2] = " "
+        if x == 1
+          $board[y-1][x+1] = " "
+        end
+      elsif direction == "S"
+        y += 1
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y-2][x+1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-2] = " "
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y-2][x] = " "
+      elsif direction == "W"
+        position = 2
+        $board[y-1][x+1] = " "
+        $board[y][x+1] = " "
+        $board[y][x-1] = " "
+        $board[y][x] = "X"
+        $board[y-1][x] = "X"
+        $board[y+1][x] = "X"
+        $board[y-1][x-1] = "X"
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 2
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-2][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y][x+1] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y-2][x-1] = " "
+
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-2][x-2] = " "
+        $board[y-2][x-1] = " "
+        $board[y][x-1] = " "
+      elsif direction == "W"
+        position = 3
+        $board[y-1][x] = " "
+        $board[y-1][x-1] = " "
+        $board[y+1][x] = " "
+        $board[y][x] = "X"
+        $board[y][x-1] = "X"
+        $board[y+1][x-1] = "X"
+        $board[y][x+1] = "X"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 3
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x+2] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-2] = " "
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y][x-2] = " "
+
+      elsif direction == "W"
+        position = 0
+        $board[y+1][x-1] = " "
+        $board[y][x-1] = " "
+        $board[y][x+1] = " "
+        $board[y][x] = "X"
+        $board[y-1][x] = "X"
+        $board[y+1][x] = "X"
+        $board[y+1][x+1] = "X"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 0
+
+      if x-1 == -1
+        x = 1
+      end
+      if y+1 == 22
+        y = 20
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+
+
+      $board[y][x] = "X"
+      $board[y-1][x] = "X"
+      $board[y+1][x] = "X"
+      $board[y+1][x+1] = "X"
+
+    end
+
+    if position == 1
+
+      if x-2 == -1
+        x = 2
+      end
+      if y+1 == 22
+        y = 20
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "X"
+      $board[y][x-1] = "X"
+      $board[y-1][x+1] = "X"
+      $board[y][x+1] = "X"
+    end
+
+    if position == 2
+
+      if x-1 == 0
+        x = 2
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 12
+        x = 10
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "X"
+      $board[y-1][x] = "X"
+      $board[y+1][x] = "X"
+      $board[y-1][x-1] = "X"
+    end
+
+    if position == 3
+
+      if x-1 == 0
+        x = 2
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "X"
+      $board[y][x-1] = "X"
+      $board[y+1][x-1] = "X"
+      $board[y][x+1] = "X"
+    end
+
+
+    $board.each do | item |
+      puts item.join(" ")
+    end
+  end
+end
+
+def tee
+  y = 2
+  x = 5
+  position = 2
+
+  $board[y][x] = "T"
+  $board[y-1][x] = "T"
+  $board[y][x-1] = "T"
+  $board[y][x+1] = "T"
+
+  $board.each do | item |
+    puts item.join(" ")
+  end
+
+  while true
+    puts "use 'A', 'S' and 'D' to move the block, or 'W' to rotate"
+    direction = gets.chomp.upcase
+
+    if position == 0
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x+2] = " "
+        if x==1
+          $board[y-1][x] = " "
+        end
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x-1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-1] = " "
+        $board[y-2][x-1] = " "
+        $board[y-1][x-2] = " "
+        if x==10
+          $board[y-1][x] = " "
+        end
+      elsif direction == "W"
+
+        position = 1
+        $board[y][x+1] = " "
+        $board[y][x] = "T"
+        $board[y][x-1] = "T"
+        $board[y+1][x] = "T"
+        $board[y-1][x] = "T"
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 1
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-1][x+1] = " "
+        $board[y][x+1] = " "
+        if x == 1
+          $board[y-1][x] = " "
+        end
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y-1][x-1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-2] = " "
+        $board[y-1][x-1] = " "
+        $board[y-2][x-1] = " "
+      elsif direction == "W"
+        position = 2
+        $board[y-1][x] = " "
+        $board[y][x] = "T"
+        $board[y][x-1] = "T"
+        $board[y][x+1] = "T"
+        $board[y+1][x] = "T"
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 2
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x+2] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+        $board[y-1][x+1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-1][x-2] = " "
+        $board[y-1][x-1] = " "
+        $board[y-1][x] = " "
+      elsif direction == "W"
+        position = 3
+        $board[y][x-1] = " "
+        $board[y][x] = "T"
+        $board[y][x+1] = "T"
+        $board[y+1][x] = "T"
+        $board[y-1][x] = "T"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 3
+
+      if direction == "A"
+        y += 1
+        x -= 1
+        $board[y-2][x+1] = " "
+        $board[y-1][x+1] = " "
+        $board[y-1][x+2] = " "
+      elsif direction == "S"
+        y += 1
+        $board[y-2][x] = " "
+        $board[y-1][x+1] = " "
+      elsif direction == "D"
+        y += 1
+        x += 1
+        $board[y-2][x-1] = " "
+        $board[y-1][x-1] = " "
+        $board[y][x-1] = " "
+        if x == 10
+          $board[y-1][x] = " "
+        end
+      elsif direction == "W"
+        position = 0
+        $board[y+1][x] = " "
+        $board[y][x] = "T"
+        $board[y-1][x] = "T"
+        $board[y][x-1] = "T"
+        $board[y][x+1] = "T"
+
+
+        $board.each do | item |
+          puts item.join(" ")
+        end
+        next
+      else
+        puts "Please use WASD"
+      end
+    end
+
+    if position == 0
+
+      if x-1 == 0
+        x = 2
+      end
+      if y+1 == 22
+        y = 20
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+
+
+      $board[y][x] = "T"
+      $board[y-1][x] = "T"
+      $board[y][x-1] = "T"
+      $board[y][x+1] = "T"
+
+    end
+
+    if position == 1
+
+      if x-1 == -1
+        x = 1
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 12
+        x = 10
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "T"
+      $board[y][x-1] = "T"
+      $board[y+1][x] = "T"
+      $board[y-1][x] = "T"
+    end
+
+    if position == 2
+
+      if x-1 == 0
+        x = 2
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "T"
+      $board[y][x-1] = "T"
+      $board[y][x+1] = "T"
+      $board[y+1][x] = "T"
+    end
+
+    if position == 3
+
+      if x-1 == -1
+        x = 1
+      end
+      if y+1 == 21
+        y = 19
+        break
+      end
+      if x+1 == 11
+        x = 9
+      end
+      if x-2 == 0
+        x = 2
+      end
+
+      $board[y][x] = "T"
+      $board[y][x+1] = "T"
+      $board[y+1][x] = "T"
+      $board[y-1][x] = "T"
     end
 
 
@@ -741,4 +1418,4 @@ def bend_L
 end
 
 #ruby tetris.rb
-bend_L
+tee
