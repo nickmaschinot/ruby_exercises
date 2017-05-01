@@ -31,7 +31,7 @@ while true
 
   puts "try again? or QUIT?"
   response = gets.chomp.upcase
-  
+
   if response == "QUIT"
   puts "Goodbye"
   break

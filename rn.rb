@@ -1,6 +1,7 @@
 
 
 def romanizer (number)
+  raise "Must use positive integer" if number <=0
   m = number/1000
   number = number - m * 1000
   d = number/500

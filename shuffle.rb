@@ -1,5 +1,5 @@
 numbers = [1,2,3,4,5,6,7,8,9]
 
-numbers = numbers.shuffle
+numbers = numbers.sort_by{rand}
 
 puts numbers
