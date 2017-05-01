@@ -26,9 +26,13 @@ class OrangeTree
   end
 
   def eat_an_orange
-    puts "Mmmmmm delicious"
-    @oranges -= 1
-    puts "There are #{@oranges} left"
+    if @oranges < 1
+      puts "no oranges to eat this year :("
+    else
+      puts "Mmmmmm delicious"
+      @oranges -= 1
+      puts "There are #{@oranges} left"
+    end
   end
 
   def measure_tree

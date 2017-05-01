@@ -593,6 +593,8 @@ def bend_L
   $board[y-1][x] = "W"
   $board[y+1][x] = "W"
   $board[y+1][x-1] = "W"
+  $board[17][6] = "W"
+  $board[18][6] = "W"
 
   $board.each do | item |
     puts item.join(" ")
@@ -775,12 +777,26 @@ def bend_L
 
     if position == 0
 
+      if ($board[y][x]).count("T-V") > 0 || ($board[y][x]).count("X-Y") > 0 ||
+         ($board[y-1][x]).count("T-V") > 0 || ($board[y-1][x]).count("X-Y") > 0 ||
+         ($board[y+1][x]).count("T-Y") > 0 || ($board[y+1][x-1]).count("T-Y") > 0 ||
+         y+1 == 20
+         if y+1 == 20
+           y = 20
+         end
+
+         y -= 1
+
+         $board[y][x] = "W"
+         $board[y-1][x] = "W"
+         $board[y+1][x] = "W"
+         $board[y+1][x-1] = "W"
+
+         break
+       end
+
       if x-1 == 0
         x = 2
-      end
-      if y+1 == 21
-        y = 19
-        break
       end
       if x+1 == 12
         x = 10
@@ -798,12 +814,26 @@ def bend_L
 
     if position == 1
 
+      if ($board[y][x]).count("T-V") > 0 || ($board[y][x]).count("X-Y") > 0 ||
+         ($board[y][x+1]).count("T-V") > 0 || ($board[y][x+1]).count("X-Y") > 0 ||
+         ($board[y][x-1]).count("T-Y") > 0 || ($board[y+1][x+1]).count("T-Y") > 0 ||
+         y+1 == 20
+         if y+1 == 20
+           y = 20
+         end
+
+         y -= 1
+
+         $board[y][x] = "W"
+         $board[y][x+1] = "W"
+         $board[y][x-1] = "W"
+         $board[y+1][x+1] = "W"
+
+         break
+       end
+
       if x-2 == -1
         x = 2
-      end
-      if y+1 == 21
-        y = 19
-        break
       end
       if x+1 == 11
         x = 9
@@ -819,6 +849,25 @@ def bend_L
     end
 
     if position == 2
+
+      if ($board[y][x]).count("T-V") > 0 || ($board[y][x]).count("X-Y") > 0 ||
+         ($board[y-1][x]).count("T-V") > 0 || ($board[y-1][x]).count("X-Y") > 0 ||
+         ($board[y+1][x]).count("T-Y") > 0 || ($board[y-1][x+1]).count("T-V") > 0 ||
+         ($board[y-1][x+1]).count("X-Y") > 0 || y+1 == 20
+
+         if y+1 == 20
+           y = 20
+         end
+
+         y -= 1
+
+         $board[y][x] = "W"
+         $board[y-1][x] = "W"
+         $board[y+1][x] = "W"
+         $board[y-1][x+1] = "W"
+
+         break
+       end
 
       if x-1 == -1
         x = 1
@@ -841,6 +890,24 @@ def bend_L
     end
 
     if position == 3
+
+      if ($board[y][x]).count("T-V") > 0 || ($board[y][x]).count("X-Y") > 0 ||
+         ($board[y][x+1]).count("T-V") > 0 || ($board[y][x+1]).count("X-Y") > 0 ||
+         ($board[y][x-1]).count("T-Y") > 0 || ($board[y+1][x+1]).count("T-Y") > 0 ||
+         y+1 == 20
+         if y+1 == 20
+           y = 20
+         end
+
+         y -= 1
+
+         $board[y][x] = "W"
+         $board[y][x-1] = "W"
+         $board[y-1][x-1] = "W"
+         $board[y][x+1] = "W"
+
+         break
+       end
 
       if x-1 == 0
         x = 2
@@ -1418,4 +1485,7 @@ def tee
 end
 
 #ruby tetris.rb
-tee
+
+bend_L
+bend_L
+bend_L
