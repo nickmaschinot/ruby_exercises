@@ -6,7 +6,7 @@ def c_to_f(c)
 end
 
 def f_to_c(f)
-  temp = ((f - 32) * 5/9)
+  temp = (f - 32) * 5/9)
   puts "here is your temp in Celsius #{temp}"
 end
 
