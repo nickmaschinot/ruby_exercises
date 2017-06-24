@@ -1,10 +1,11 @@
 class Person
   PEOPLE = []
   attr_reader :name, :hobbies, :friends
-  def initialize(name)
-    @name = name
-    @hobbies = []
-    @friends = []
+  attr_accessor :first_name, :middle_name, :last_name
+  def initialize
+    @whole_name = ""
+    @hobbies    = []
+    @friends    = []
     PEOPLE << self
   end
   def has_hobby(hobby)
