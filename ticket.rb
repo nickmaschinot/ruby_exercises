@@ -15,6 +15,9 @@ class Ticket < Event
     end
     @date = date
   end
+  def ===(other_ticket)
+    self.venue == other_ticket.venue
+  end
 end
 
 def Ticket.most_expensive(*tickets)
@@ -23,7 +26,7 @@ end
 
 th = Ticket.new("Town Hall", "11/13/14")
 cc = Ticket.new("Convention Center", "12/13/14")
-fg = Ticket.new("Fairgrounds", "12/13/14")
+fg = Ticket.new("Town Hall", "12/13/14")
 
 
 th.price = 63.00
@@ -41,3 +44,12 @@ puts "Oops, it just went up and now costs $#{"%.2f" % th.price}."
 puts "The second ticket is for a #{cc.venue} event on #{cc.date}."
 
 puts Ticket::VENUES
+
+case th
+when cc
+  puts "same venue as 2"
+when fg
+  puts "same venue as 3"
+else
+  p "no match"
+end
