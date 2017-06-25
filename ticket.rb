@@ -45,11 +45,11 @@ puts "The second ticket is for a #{cc.venue} event on #{cc.date}."
 
 puts Ticket::VENUES
 
-case th
-when cc
-  puts "same venue as 2"
-when fg
-  puts "same venue as 3"
-else
-  p "no match"
-end
+puts case th
+     when cc
+        "same venue as 2"
+     when fg
+        "same venue as 3"
+     else
+        "no match"
+     end

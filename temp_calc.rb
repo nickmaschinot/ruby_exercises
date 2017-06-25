@@ -6,10 +6,14 @@ def c_to_f(c)
 end
 
 def f_to_c(f)
-  temp = (f - 32) * 5/9)
+  temp = (f - 32) * 5/9
   puts "here is your temp in Celsius #{temp}"
 end
 
+celcius = [0, 10, 20, 30, 40, 50, 60, 70, 80, 999]
+for c in celcius
+  puts "temp in Fahrenheit #{c_to_f(c)}"
+end
 while true
   puts "Type 'A', 'B', or 'QUIT'"
   input = gets.chomp.upcase
