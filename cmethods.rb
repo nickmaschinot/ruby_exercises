@@ -25,6 +25,14 @@ class Array
   end
 end
 
+class Bid
+  include Comparable
+  attr_accessor :estimate
+  def <=>(other_bid)
+    self.estimate <=> other_bid.estimate 
+  end
+end
+
 
 5.my_times {|i| puts "iteration #{i}"}
 array = [1,4,3,4,7]
