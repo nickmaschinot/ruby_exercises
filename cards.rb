@@ -24,7 +24,7 @@ class Card < Array
       raise ArgumentError, "Unknown suit #{suit}"
     end
     @value = name + 2
-    @@cards << [@name, @suit]
+    @@cards << [@name, @suit, @value]
     self.class.total_count += 1
   end
   def show_deck
@@ -34,14 +34,14 @@ class Card < Array
     @@cards.shuffle!
   end
   def draw_card(number)
-    x = 0
     temp_hand = []
+    x = 0
     number.times do |x|
       p @@cards[x]
       temp_hand << @@cards[x]
       x += 1
     end
-    @@cards[0..number].shift  
+    @@cards.slice!(0..number)
     temp_hand
   end
   def generate_suit(suit)
@@ -67,11 +67,3 @@ class Deck < Card
     @hand = draw_card(size)
   end
 end
-
-
-deck = Deck.new
-p deck.show_deck
-p deck.shuffle_deck
-player1 = deck.hand_new(3)
-p player1[2]
-p deck.show_deck
