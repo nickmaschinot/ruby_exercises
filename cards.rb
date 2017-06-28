@@ -1,6 +1,7 @@
 
 class Card < Array
   include Enumerable
+  include Comparable
   @@cards = []
   def self.total_count
     @total_count ||= 0
@@ -37,7 +38,6 @@ class Card < Array
     temp_hand = []
     x = 0
     number.times do |x|
-      p @@cards[x]
       temp_hand << @@cards[x]
       x += 1
     end
