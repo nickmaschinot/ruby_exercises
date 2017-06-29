@@ -1,5 +1,5 @@
 class Dragon
-  def initialize name
+  def initialize (name)
     @name = name
     @asleep = false
     @stuff_in_belly = 10
@@ -87,7 +87,6 @@ class Dragon
       end
       puts "#{@name}'s stomach growls'"
     end
-
     if poopy?
       if @asleep
         @asleep = false
