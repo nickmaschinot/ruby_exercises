@@ -44,13 +44,15 @@ while true
       end
     end
   end
+  p "--------------------------------------"
   deck = Game.new
   deck.shuffle_deck
   player1 = deck.hand_new(2)
   player2 = deck.hand_new(2)
   deck.display(player1, "your")
-  p ""
+  p "--------------------------------------"
   deck.display_dealer(player2)
+  p "--------------------------------------"
   while true
     if deck.blackjack?(player1, plyr, bet); break; end
     p "Do you want to hit, raise, or stand?"
@@ -66,7 +68,7 @@ while true
     deck.display(player1, "your")
   end
   deck.display(player1, "your")
-  p "-------------"
+  p "--------------------------------------"
   unless deck.blackjack?(player1, plyr, 0) || deck.bust?(player1, plyr, 0)
     while true
       if deck.hand_score(player2) <= 16
@@ -78,12 +80,15 @@ while true
         break
       end
     end
-    p "-------------"
     unless deck.bust?(player2, plyr, 0)
       p player2
+      p "--------------------------------------"
       p deck.compare_hands(player1, player2, plyr, bet)
     end
   end
+  p "--------------------------------------"
+  p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  p "--------------------------------------"
   p "you have $#{plyr.money}"
   p "play again? or QUIT?"
 end
