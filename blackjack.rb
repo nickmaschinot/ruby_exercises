@@ -55,7 +55,7 @@ while true
   p "--------------------------------------"
   while true
     if deck.blackjack?(player1, plyr, bet); break; end
-    p "Do you want to hit, raise, or stand?"
+    p "Do you want to hit, or stand?"
     input = gets.chomp.downcase
     if input == "hit"
       player1 += deck.hand_new(1)
