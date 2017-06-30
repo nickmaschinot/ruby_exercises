@@ -2,7 +2,7 @@
 bye=0
 
 while bye < 3
-puts "Say hi to grandma "
+puts "Say hi to grandma: "
 response = gets.chomp
 
   if response == "BYE"
@@ -18,9 +18,7 @@ response = gets.chomp
     puts "Huh? speak louder "
     bye = 0
   end
-
   if bye == 3
     puts "Oh well, if you have to leave "
   end
-
 end

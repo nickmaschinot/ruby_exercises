@@ -19,7 +19,7 @@ months = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul",
 
 
 
-def b_day_search hash, key
+def b_day_search(hash, key)
   months = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul",
             "aug", "sept", "oct", "nov", "dec"]
 
@@ -69,13 +69,13 @@ def b_day_search hash, key
 end
 
 puts "Please input a name from the database, or type QUIT"
-name = gets.chomp
-puts ""
 
 while true
+  name = gets.chomp
+  puts ""
   if hash.key?(name)
     puts "Information found:"
-    b_day_search hash, name
+    b_day_search (hash, name)
   elsif name == "QUIT"
     puts "Goodbye"
     break
@@ -83,5 +83,4 @@ while true
     puts "Person not found. Please input a name from the database, or type QUIT"
   end
   puts "Search again? or QUIT?"
-  name = gets.chomp
 end
