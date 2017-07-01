@@ -55,3 +55,6 @@ p state_hash.values_at("Texas", "New York")
 p state_hash
 p state_hash.select {|k,v| k > "G"}
 p state_hash.reject {|k,v| k > "G"}
+p state_hash.sort do |k,k2|
+  state_hash[k][2] <=> state_hash[k2][2]
+end

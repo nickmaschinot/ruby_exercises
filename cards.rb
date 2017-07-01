@@ -67,3 +67,6 @@ class Deck < Card
     @hand = draw_card(size)
   end
 end
+
+deck = Deck.new
+p deck.show_deck
