@@ -1,5 +1,6 @@
 require_relative "cards"
 require_relative "game_modules"
+
 class Game < Deck
   include VideoPoker
   attr_reader :title
@@ -9,7 +10,7 @@ class Game < Deck
   end
   def discard(hand, array)
     array.each do |y|
-      hand = hand.map{|x|x == hand[y] ? hand_new(1) : x}
+      hand = hand.map{|x|x == hand[y] ? hand_new(1).flatten : x}
     end
     hand
   end
@@ -58,7 +59,7 @@ while true
   player1 = deck.hand_new(5)
   deck.display(player1, "your")
   p "--------------------------------------"
-  p "what cards do you want to keep before you draw?"
+  p "what cards do you want to get rid of before you draw?"
   discard = []
   while true
     p "type '1', '2', '3', '4', '5' to discard the cards you dont want."
@@ -70,13 +71,12 @@ while true
     elsif input.count("a-z") > 0
       puts "Please only input integers or draw"
     elsif input.count("67890") > 0
-      puts "only numbers 1 to 5 will save a card"
+      puts "only numbers 1 to 5 will discard a card"
     else
       input = input.to_i - 1
       discard << input
       p discard
       p "discarded the #{player1[input][0]} of #{player1[input][1]}s"
-      p "want to discard another?"
     end
     discard
   end

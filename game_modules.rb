@@ -134,7 +134,7 @@ module VideoPoker
       bet = payout
     else
       p "you lose"
-      bet = -bet 
+      bet = -bet
     end
   end
 
@@ -169,10 +169,12 @@ module VideoPoker
   end
   def display(hand, name)
     x = 0
+    y = 1
     p "#{name} hand: "
     hand.count.times do |x|
-      print "#{hand[x][0]} of #{hand[x][1]}s | "
+      print "#{y}: #{hand[x][0]} of #{hand[x][1]}s | \n"
       x += 1
+      y += 1
     end
   end
   def all_equal?(hand)
