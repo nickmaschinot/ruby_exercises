@@ -72,7 +72,7 @@ end
 
 module VideoPoker
   TYPES = ["Royal-Flush", "Straight-Flush", "Four-of-a-Kind", "Full House", "Flush",
-            "Three-of-a-kind", "Two-Pair", "Pair", "High-Card"]
+            "Straight", "Three-of-a-kind", "Two-Pair", "Pair", "High-Card"]
   PRIZES = [250, 50, 25, 9, 6, 4, 3, 2, 1]
   def hand_type(hand)
     by_suit = []
@@ -98,27 +98,31 @@ module VideoPoker
       else
         TYPES[4]
       end
+    elsif straight?(by_value)
+      TYPES[5]
     elsif frequency.values.sort.last == 4
-      TYPES[1]
+      TYPES[2]
     elsif frequency.values.sort.last == 3
       if frequency.count == 2
-        TYPES[2]
-      else
-        TYPES[4]
-      end
-    elsif frequency.values.sort.last == 2
-      if frequency.count == 3
-        TYPES[5]
+        TYPES[3]
       else
         TYPES[6]
       end
-    else
-      TYPES[7]
+    elsif frequency.values.sort.last == 2
+      if frequency.count == 3
+        TYPES[7]
+      else
+        if frequency.key(frequency.values.sort.last) >= 11
+          TYPES[8]
+        else
+          TYPES[9]
+        end
+      end
     end
   end
 
   def winner?(title)
-    return true unless title == TYPES[7]
+    return true unless title == TYPES[9]
   end
 
   def score_hand(hand, bet)
@@ -127,50 +131,41 @@ module VideoPoker
     if winner?(type)
       p "You win with a #{type}"
       p "your payout is #{payout}"
+      bet = payout
     else
-      p you lose
+      p "you lose"
+      bet = -bet 
     end
   end
 
   def payout(bet, title)
     payout = ""
-    if title = TYPES[0] &&
-
-
-  def hand_score(hand)
-    x = 0
-    aces = 0
-    @score = 0
-    hand.count.times do |x|
-      if hand[x][2] <= 10
-        @score += hand[x][2]
-      elsif hand[x][2] <= 13
-        @score += 10
-      else
-        @score += 11
-        aces += 1
-      end
-      x += 1
+    case title
+    when TYPES[0]
+      payout = PRIZES[0]
+    when TYPES[1]
+      payout = PRIZES[1]
+    when TYPES[2]
+      payout = PRIZES[2]
+    when TYPES[3]
+      payout = PRIZES[3]
+    when TYPES[4]
+      payout = PRIZES[5]
+    when TYPES[6]
+      payout = PRIZES[6]
+    when TYPES[7]
+      payout = PRIZES[7]
+    when TYPES[8]
+      payout = PRIZES[8]
     end
-    if @score > 21 && aces > 0
-      @score -= 9
-      aces -= 1
+    payout * bet
+  end
+  def hand_score(values)
+    @score = 0
+    values.count.times do |x|
+        @score += values[x]
     end
     @score
-  end
-  def compare_hands(hand, other_hand, plyr, bet)
-    display(hand, "your")
-    p "-------------"
-    display(other_hand, "dealer's")
-    if hand_score(hand) > hand_score(other_hand)
-      p "Player wins!"
-      plyr.money += bet
-    elsif hand_score(hand) < hand_score(other_hand)
-      p "Dealer wins"
-      plyr.money -= bet
-    else
-      "Tie"
-    end
   end
   def display(hand, name)
     x = 0
