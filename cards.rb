@@ -1,4 +1,10 @@
 
+class Array
+  def same_values?
+    self.uniq.length == 1
+  end
+end
+
 class Card < Array
   include Enumerable
   include Comparable
@@ -67,6 +73,3 @@ class Deck < Card
     @hand = draw_card(size)
   end
 end
-
-deck = Deck.new
-p deck.show_deck
