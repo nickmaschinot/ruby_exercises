@@ -8,12 +8,6 @@ class Game < Deck
     super
     @title = ""
   end
-  def discard(hand, array)
-    array.each do |y|
-      hand = hand.map{|x|x == hand[y] ? hand_new(1).flatten : x}
-    end
-    hand
-  end
 end
 
 class Player < Game
@@ -46,7 +40,7 @@ while true
       bet = bet.to_i
       if bnkroll - bet < 0
         p "You dont have enough money to place that bet"
-        p "You have #{plyr.bnkroll} remaining"
+        p "You have $#{plyr.money} remaining"
         p "Place a smaller bet:"
       else
         break
@@ -57,6 +51,7 @@ while true
   deck = Game.new
   deck.shuffle_deck
   player1 = deck.hand_new(5)
+  remainder = deck.hand_new(47)
   deck.display(player1, "your")
   p "--------------------------------------"
   p "what cards do you want to get rid of before you draw?"
@@ -74,50 +69,30 @@ while true
       puts "only numbers 1 to 5 will discard a card"
     else
       input = input.to_i - 1
-      discard << input
-      p discard
-      p "discarded the #{player1[input][0]} of #{player1[input][1]}s"
+      if discard.include?(input)
+        discard.slice!(input)
+        p "no longer discarding the #{player1[input][0]} of #{player1[input][1]}s"
+      else
+        discard << input
+        p "discarding the #{player1[input][0]} of #{player1[input][1]}s"
+      end
     end
-    discard
   end
-  p discard
-  player1 = deck.discard(player1, discard)
+  discard.each do |y|
+    p remainder[0]
+    player1 = player1.map{|x|x == player1[y] ? remainder[0] : x}
+    remainder.slice!(0)
+  end
   deck.display(player1, "your")
   p "--------------------------------------"
   plyr.money += deck.score_hand(player1, bet)
   p "--------------------------------------"
   p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   p "--------------------------------------"
+  if plyr.money == 0
+    puts "Game over"
+    break
+  end
   p "you have $#{plyr.money}"
   p "play again? or QUIT?"
 end
-
-deck.display(hand, "your")
-
-sample_hand = [["ten", "spade", 10], ["jack", "heart", 12], ["queen", "spade", 12],
-               ["king", "spade", 13], ["ace", "spade", 14]]
-
-by_suit = []
-by_value = []
-sample_hand.each do |k|
-  by_suit << k[1]
-end
-by_suit.sort!
-sample_hand.each do |k|
-  by_value << k[2]
-end
-by_value.sort!
-frequency = by_value.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-p frequency
-p frequency.values.last
-#ruby vpoker.rb
-p by_suit
-p by_value
-#p all_equal?(by_suit)
-#p straight?(by_value)
-
-type = deck.hand_type(sample_hand)
-p type
-p deck.score_hand(sample_hand, 3)
-
-p sample_hand

@@ -118,6 +118,8 @@ module VideoPoker
           TYPES[9]
         end
       end
+    else
+      TYPES[9]
     end
   end
 
@@ -130,8 +132,8 @@ module VideoPoker
     payout = payout(bet, type)
     if winner?(type)
       p "You win with a #{type}"
-      p "your payout is #{payout}"
-      bet = payout
+      p "your payout is $#{payout}"
+      bet = payout - bet
     else
       p "you lose"
       bet = -bet
