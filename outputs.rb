@@ -11,4 +11,10 @@ f.rewind
 p f.readlines
 f.rewind
 f.each {|line| puts "Next line: #{line}" }
+f.rewind
+p f.pos
+f.pos = 10
+#f.seek(15, IO::SEEK_CUR)
+p f.gets
+p f.pos
 z = 10/0

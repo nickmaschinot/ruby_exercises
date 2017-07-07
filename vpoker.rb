@@ -68,19 +68,22 @@ while true
     elsif input.count("67890") > 0
       puts "only numbers 1 to 5 will discard a card"
     else
-      input = input.to_i - 1
-      if discard.include?(input)
-        discard.slice!(input)
-        p "no longer discarding the #{player1[input][0]} of #{player1[input][1]}s"
-      else
-        discard << input
-        p "discarding the #{player1[input][0]} of #{player1[input][1]}s"
+      input = input.scan(/\w/)
+      input.each do |number|
+        number = number.to_i - 1
+        if discard.include?(number)
+          discard.slice!(number)
+          p "no longer discarding the #{player1[number][0]} of #{player1[number][1]}s"
+        else
+          discard << number
+          p "discarding the #{player1[number][0]} of #{player1[number][1]}s"
+        end
       end
     end
   end
   discard.each do |y|
-    p remainder[0]
     player1 = player1.map{|x|x == player1[y] ? remainder[0] : x}
+    p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"
     remainder.slice!(0)
   end
   deck.display(player1, "your")

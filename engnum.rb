@@ -13,5 +13,5 @@ while true
     number = number.to_i
     p "Here is your number: #{english_number(number)}"
   end
-  puts "try again? or QUIT?"
+  puts "type another number? or QUIT?"
 end

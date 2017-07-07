@@ -3,12 +3,15 @@ print "Hello. Please enter a celsius value: "
 celsius = gets.to_i
 fahrenheit = (celsius * 9 / 5) + 32
 ["print \"Hello. Please enter a celsius value: \"\n", "celsius = gets.to_i\n", "fahrenheit = (celsius * 9 / 5) + 32\n", "puts \"Saving result to output file 'temp.out'\"\n", "fh = File.new(\"temp.out\", \"w\")\n", "fh.puts fahrenheit\n", "fh.close \n"]
-Next line print "Hello. Please enter a celsius value: "
-Next line celsius = gets.to_i
-Next line fahrenheit = (celsius * 9 / 5) + 32
-Next line puts "Saving result to output file 'temp.out'"
-Next line fh = File.new("temp.out", "w")
-Next line fh.puts fahrenheit
-Next line fh.close 
-outputs.rb:14:in `/': divided by 0 (ZeroDivisionError)
-	from outputs.rb:14:in `<main>'
+Next line: print "Hello. Please enter a celsius value: "
+Next line: celsius = gets.to_i
+Next line: fahrenheit = (celsius * 9 / 5) + 32
+Next line: puts "Saving result to output file 'temp.out'"
+Next line: fh = File.new("temp.out", "w")
+Next line: fh.puts fahrenheit
+Next line: fh.close 
+0
+"r a celsius value: \"\n"
+46
+outputs.rb:20:in `/': divided by 0 (ZeroDivisionError)
+	from outputs.rb:20:in `<main>'

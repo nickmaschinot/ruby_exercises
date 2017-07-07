@@ -81,7 +81,7 @@ while true
       end
     end
     unless deck.bust?(player2, plyr, 0)
-      p player2
+      deck.display_dealer(player2)
       p "--------------------------------------"
       p deck.compare_hands(player1, player2, plyr, bet)
     end
