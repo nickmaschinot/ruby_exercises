@@ -23,10 +23,10 @@ deck = Game.new
 deck.shuffle_deck
 
 pot = 100
-sample_hand = [["ten", "spade", 7], ["jack", "spade", 9],
-["queen", "spade", 9], ["king", "heart", 9], ["ace", "spade", 9]]
-sample_hand2 = [["ten", "spade", 10], ["jack", "spade", 8],
-["queen", "spade", 8], ["king", "heart", 8], ["ace", "spade", 8]]
+sample_hand = [["ten", "spade", 5], ["jack", "spade", 5],
+["queen", "spade", 10], ["king", "heart", 10], ["ace", "spade", 12]]
+sample_hand2 = [["ten", "spade", 5], ["jack", "spade", 5],
+["queen", "heart", 10], ["king", "spade", 10], ["ace", "spade", 10]]
 deck.winner?(sample_hand, sample_hand2, pot)
 p pot
 

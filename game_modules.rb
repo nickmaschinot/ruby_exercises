@@ -225,11 +225,7 @@ module FiveCardDraw
       if frequency.count == 3
         TYPES[7]
       else
-        if frequency.key(frequency.values.sort.last) >= 11
-          TYPES[8]
-        else
-          TYPES[9]
-        end
+        TYPES[8]
       end
     else
       TYPES[9]
@@ -252,10 +248,9 @@ module FiveCardDraw
         p "you lose"
         false
       end
-
-    p player1
-    p type1
-    p TYPES.index(type1)
+    else
+      p "you lose"
+      false
     end
   end
 
@@ -275,6 +270,7 @@ module FiveCardDraw
   def hand_score(hand1, hand2, type1, pot)
     key = TYPES.index(type1)
     values1 = sort_values(hand1)
+    p values1.sort[0]
     values2 = sort_values(hand2)
     frequency1 = values1.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     max1 = values1.max_by { |v| frequency1[v] }
@@ -284,19 +280,27 @@ module FiveCardDraw
     p max2
     if key == 0
       pot = 0
-    elsif key == 1
+    elsif key == 1 || key == 4 || key == 5 || key == 9
       if values1.max > values2.max
         return true
-      elsif values1.max == values2.max
+      elsif (key == 1 || key == 5) && values1.max == values2.max
         pot = 0
+      elsif (key == 4 || key == 9) && values1.max == values2.max
+        high_card?(values1, values2)
       else
         return false
       end
-    elsif key == 2
+    elsif key == 2 || key == 3 || key == 6 || key == 7 || key == 8
       if max1 > max2
         return true
-      elsif frequency1.sort.first[0] == frequency2.sort.first[0]
-        pot = 0
+      elsif max1 == max2
+        if high_card?(values1, values2)
+          return true
+        elsif high_card?(values1, values2) == 0
+          pot = 0
+        else
+          return false
+        end
       else
         return false
       end
@@ -310,6 +314,7 @@ module FiveCardDraw
     end
     @score
   end
+
   def sort_values(hand)
     by_value = []
     hand.each do |k|
@@ -338,5 +343,41 @@ module FiveCardDraw
     return false unless hand.size == 5
     hand.sort!
     hand.each_cons(2).all? {|a, b| b == a + 1 }
+  end
+
+  def high_card?(values1, values2)
+    values1.sort!
+    values2.sort!
+    if values1[4] > values2[4]
+      return true
+    elsif values1[4] == values2[4]
+      if values1[3] > values2[3]
+        return true
+      elsif values1[3] == values2[3]
+        if values1[2] > values2[2]
+          return true
+        elsif values1[2] == values2[2]
+          if values1[1] > values2[1]
+            return true
+          elsif values1[1] == values2[1]
+            if values1[0] > values2[0]
+              return true
+            elsif values1[0] == values2[0]
+              return false
+            else
+              return false
+            end
+          else
+            return false
+          end
+        else
+          return false
+        end
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
 end
