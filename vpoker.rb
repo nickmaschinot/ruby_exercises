@@ -27,7 +27,9 @@ p "How much do you want to play with?"
 bnkroll = gets.chomp.to_i
 plyr = Player.new(name, bnkroll)
 p "Alright #{plyr.name}, let's play"
+
 while true
+  #handles bets and ending the game
   p "place your bet or type QUIT"
   while true
     bet = gets.chomp.downcase
@@ -48,6 +50,7 @@ while true
     end
   end
   p "--------------------------------------"
+  #generates and shuffles a new deck with each new hand
   deck = Game.new
   deck.shuffle_deck
   player1 = deck.hand_new(5)
@@ -57,6 +60,7 @@ while true
   p "what cards do you want to get rid of before you draw?"
   discard = []
   while true
+    #manages discarding unwanted cards
     p "type '1', '2', '3', '4', '5' to discard the cards you dont want."
     p "and 'draw' to replace them."
     input = gets.chomp.downcase
@@ -81,6 +85,7 @@ while true
       end
     end
   end
+  #mechanism for getting rid of cards 
   discard.each do |y|
     player1 = player1.map{|x|x == player1[y] ? remainder[0] : x}
     p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"

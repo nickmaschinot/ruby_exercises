@@ -2,6 +2,8 @@
 
 module Blackjack
   include Enumerable
+  #Assigns a points value to each hand,
+  #and accounts for the variable value of an ace
   def hand_score(hand)
     x = 0
     aces = 0
@@ -18,11 +20,13 @@ module Blackjack
       x += 1
     end
     if @score > 21 && aces > 0
-      @score -= 9
+      @score -= 10
       aces -= 1
     end
     @score
   end
+  #evaluates player and dealer had against one another
+  #also manages won and lost bet values
   def compare_hands(hand, other_hand, plyr, bet)
     display(hand, "your")
     p "-------------"
@@ -37,12 +41,14 @@ module Blackjack
       "Tie"
     end
   end
+  #checks whether the evaluated hand is over 21 in value
   def bust?(hand, plyr, bet)
     if hand_score(hand) > 21
       plyr.money -= bet
       p "#{hand} is busted!"
     end
   end
+  #displays the entirety of a given hand
   def display(hand, name)
     x = 0
     p "#{name} hand:"
@@ -51,6 +57,7 @@ module Blackjack
       x += 1
     end
   end
+  #displays a hand while hidng the first dealt card from view
   def display_dealer(hand)
     x = 1
     ticker = hand.count - 1
@@ -61,6 +68,7 @@ module Blackjack
       x += 1
     end
   end
+  #checks if a hand hits 21 with only two cards
   def blackjack?(hand, plyr, bet)
     if hand_score(hand) == 21 && hand.count == 2
       plyr.money += bet
@@ -74,6 +82,7 @@ module VideoPoker
   TYPES = ["Royal-Flush", "Straight-Flush", "Four-of-a-Kind", "Full House", "Flush",
             "Straight", "Three-of-a-kind", "Two-Pair", "Pair", "High-Card"]
   PRIZES = [250, 50, 25, 9, 6, 4, 3, 2, 1]
+  #determines what TYPE of hand the player has
   def hand_type(hand)
     by_suit = []
     by_value = []
@@ -87,7 +96,6 @@ module VideoPoker
     by_suit.sort!
     frequency = by_value.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     frequency.values.sort.reverse!
-
     if all_equal?(by_suit)
       if straight?(by_value)
         if hand_score(by_value) == 60
@@ -123,10 +131,12 @@ module VideoPoker
     end
   end
 
+  #kinda self explainatory isn't it?
   def winner?(title)
     return true unless title == TYPES[9]
   end
 
+  #handles payouts
   def score_hand(hand, bet)
     type = hand_type(hand)
     payout = payout(bet, type)
@@ -140,28 +150,17 @@ module VideoPoker
     end
   end
 
+  #assigns payout value based on hand type
   def payout(bet, title)
     payout = ""
-    case title
-    when TYPES[0]
-      payout = PRIZES[0]
-    when TYPES[1]
-      payout = PRIZES[1]
-    when TYPES[2]
-      payout = PRIZES[2]
-    when TYPES[3]
-      payout = PRIZES[3]
-    when TYPES[4]
-      payout = PRIZES[5]
-    when TYPES[6]
-      payout = PRIZES[6]
-    when TYPES[7]
-      payout = PRIZES[7]
-    when TYPES[8]
-      payout = PRIZES[8]
+    key = TYPES.index(title)
+    if key <= 8
+      payout = PRIZES[key]
     end
     payout * bet
   end
+
+  #assigns a hand value based on card rank
   def hand_score(values)
     @score = 0
     values.count.times do |x|
@@ -169,6 +168,8 @@ module VideoPoker
     end
     @score
   end
+
+  #displays hand
   def display(hand, name)
     x = 0
     y = 1
@@ -179,9 +180,13 @@ module VideoPoker
       y += 1
     end
   end
+
+  #checks for flush when fed array of suits in a hand
   def all_equal?(hand)
       hand.uniq.size <= 1
   end
+
+  #checks for a straight by seeing if card values are consecutive 
   def straight?(hand)
     return false unless hand.size == 5
     hand.each_cons(2).all? {|a, b| b == a + 1 }

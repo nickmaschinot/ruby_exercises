@@ -27,6 +27,7 @@ p "Alright #{name}, let's play"
 while true
   p "place your bet or type QUIT"
   while true
+    #handles bet input, and ending the game
     bet = gets.chomp.downcase
     if bet == "quit"
       puts "Goodbye"
@@ -45,20 +46,26 @@ while true
     end
   end
   p "--------------------------------------"
+  #generates and shuffles a new deck for each game
   deck = Game.new
   deck.shuffle_deck
   player1 = deck.hand_new(2)
   player2 = deck.hand_new(2)
+  #shows what the player has after the draw
   deck.display(player1, "your")
   p "--------------------------------------"
+  #shows the dealer's hand, with one card face down
   deck.display_dealer(player2)
   p "--------------------------------------"
   while true
+    #checks if player has blackjack
     if deck.blackjack?(player1, plyr, bet); break; end
+    #lets player hit or stand
     p "Do you want to hit, or stand?"
     input = gets.chomp.downcase
     if input == "hit"
       player1 += deck.hand_new(1)
+      #checks for bust
       if deck.bust?(player1, plyr, bet); break; end
     elsif input == "stand"
       break
@@ -69,8 +76,11 @@ while true
   end
   deck.display(player1, "your")
   p "--------------------------------------"
+  #runs script for dealer behavior,
+  #unless the game has been ended by blackjack or bust
   unless deck.blackjack?(player1, plyr, 0) || deck.bust?(player1, plyr, 0)
     while true
+      #dealer will hit unless he has 16
       if deck.hand_score(player2) <= 16
         p "Dealer hits"
         player2 += deck.hand_new(1)
@@ -80,6 +90,7 @@ while true
         break
       end
     end
+    #unless the dealer has busted, the hands are evaluated against eachother
     unless deck.bust?(player2, plyr, 0)
       deck.display_dealer(player2)
       p "--------------------------------------"
