@@ -5,7 +5,6 @@ module Blackjack
   #Assigns a points value to each hand,
   #and accounts for the variable value of an ace
   def hand_score(hand)
-    x = 0
     aces = 0
     @score = 0
     hand.count.times do |x|
@@ -42,15 +41,14 @@ module Blackjack
     end
   end
   #checks whether the evaluated hand is over 21 in value
-  def bust?(hand, plyr, bet)
+  def bust?(hand, plyr, bet, name)
     if hand_score(hand) > 21
       plyr.money -= bet
-      p "#{hand} is busted!"
+      p "#{name} is busted!"
     end
   end
   #displays the entirety of a given hand
   def display(hand, name)
-    x = 0
     p "#{name} hand:"
     hand.count.times do |x|
       p "#{hand[x][0]} of #{hand[x][1]}s"
@@ -59,7 +57,6 @@ module Blackjack
   end
   #displays a hand while hidng the first dealt card from view
   def display_dealer(hand)
-    x = 1
     ticker = hand.count - 1
     p "Dealer shows:"
     p "----- of -----s"
@@ -74,6 +71,18 @@ module Blackjack
       plyr.money += bet
       p "Blackjack, winner!!!"
       return true
+    end
+  end
+
+  def pair?(hand)
+    by_value = []
+    hand.each do |k|
+      by_value << k[2]
+    end
+    if by_value.uniq.size <= 1
+      return true
+    else
+      return false
     end
   end
 end
@@ -186,7 +195,7 @@ module VideoPoker
       hand.uniq.size <= 1
   end
 
-  #checks for a straight by seeing if card values are consecutive 
+  #checks for a straight by seeing if card values are consecutive
   def straight?(hand)
     return false unless hand.size == 5
     hand.each_cons(2).all? {|a, b| b == a + 1 }

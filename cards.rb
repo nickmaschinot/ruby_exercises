@@ -42,7 +42,6 @@ class Card < Array
   end
   def draw_card(number)
     temp_hand = []
-    x = 0
     number.times do |x|
       temp_hand << @@cards[x]
       x += 1
@@ -51,7 +50,6 @@ class Card < Array
     temp_hand
   end
   def generate_suit(suit)
-    x = 0
     13.times do |x|
       Card.new(x, suit)
       x += 1
