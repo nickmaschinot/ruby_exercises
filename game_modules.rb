@@ -269,9 +269,9 @@ module FiveCardDraw
 
   def hand_score(hand1, hand2, type1, pot)
     key = TYPES.index(type1)
-    values1 = sort_values(hand1)
+    values1 = values(hand1)
     p values1.sort[0]
-    values2 = sort_values(hand2)
+    values2 = values(hand2)
     frequency1 = values1.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     max1 = values1.max_by { |v| frequency1[v] }
     p max1
@@ -315,13 +315,21 @@ module FiveCardDraw
     @score
   end
 
-  def sort_values(hand)
+  def values(hand)
     by_value = []
     hand.each do |k|
       by_value << k[2]
     end
     by_value.sort!
     by_value
+  end
+
+  def suits(hand)
+    by_suit = []
+    hand.each do |k|
+      by_suit << k[1]
+    end
+    by_suit.sort!
   end
 
   def display(hand, name)
@@ -343,6 +351,26 @@ module FiveCardDraw
     return false unless hand.size == 5
     hand.sort!
     hand.each_cons(2).all? {|a, b| b == a + 1 }
+  end
+
+  def opponent(hand, pot)
+    type = hand_type(hand)
+    key = TYPES.index(type)
+    values = values(hand)
+    suits = suits(hand)
+    while true
+      if key == 6
+        #discard two cards not in 3-of-a-kind
+      elsif key == 7
+        #discard the one card not part of Two-Pair
+      elsif key == 8
+        #discard three cards not part of pair
+      elsif key == 9
+        #manage how to either play for a straight, play for a flush, or toss hand
+      else
+        break
+      end
+    end
   end
 
   def high_card?(values1, values2)

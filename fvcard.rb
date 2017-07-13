@@ -111,3 +111,11 @@ while true
   p "you have $#{plyr.money}"
   p "play again? or QUIT?"
 end
+
+pot = 100
+sample_hand = [["ten", "spade", 5], ["jack", "spade", 5],
+["queen", "spade", 10], ["king", "heart", 10], ["ace", "spade", 12]]
+sample_hand2 = [["ten", "spade", 5], ["jack", "spade", 5],
+["queen", "heart", 10], ["king", "spade", 10], ["ace", "spade", 10]]
+deck.winner?(sample_hand, sample_hand2, pot)
+p pot
