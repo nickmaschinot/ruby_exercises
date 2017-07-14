@@ -1,5 +1,6 @@
 require_relative "cards"
 require_relative "game_modules"
+require 'date'
 
 class Game < Deck
   include VideoPoker
@@ -85,7 +86,7 @@ while true
       end
     end
   end
-  #mechanism for getting rid of cards 
+  #mechanism for getting rid of cards
   discard.each do |y|
     player1 = player1.map{|x|x == player1[y] ? remainder[0] : x}
     p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"
@@ -101,6 +102,13 @@ while true
     puts "Game over"
     break
   end
+  f = File.new("video_poker_record_#{Date.today}.txt", "a")
+  f.puts "#{plyr.name} at: #{Time.now}"
+  f.puts "player hand value: #{deck.hand_type(player1)}"
+  f.puts "player money remaining: $#{plyr.money}"
+  f.puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  f.close
+  
   p "you have $#{plyr.money}"
   p "play again? or QUIT?"
 end

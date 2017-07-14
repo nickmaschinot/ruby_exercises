@@ -68,7 +68,7 @@ module Blackjack
   #checks if a hand hits 21 with only two cards
   def blackjack?(hand, plyr, bet)
     if hand_score(hand) == 21 && hand.count == 2
-      plyr.money += bet
+      plyr.money += (bet * 1.5)
       p "Blackjack, winner!!!"
       return true
     end

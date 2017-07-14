@@ -1,5 +1,6 @@
 require_relative "cards"
 require_relative "game_modules"
+require 'date'
 class Game < Deck
   include Blackjack
   def initialize
@@ -108,6 +109,13 @@ while true
       p deck.compare_hands(player1, player2, plyr, bet)
     end
   end
+  f = File.new("blackjack_record_#{Date.today}.txt", "a")
+  f.puts "#{plyr.name} at: #{Time.now}"
+  f.puts "player hand value: #{deck.hand_score(player1)}"
+  f.puts "dealer hand value: #{deck.hand_score(player2)}"
+  f.puts "player money remaining: $#{plyr.money}"
+  f.puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  f.close
   p "--------------------------------------"
   p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   p "--------------------------------------"
