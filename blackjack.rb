@@ -109,7 +109,7 @@ while true
       p deck.compare_hands(player1, player2, plyr, bet)
     end
   end
-  f = File.new("blackjack_record_#{Date.today}.txt", "a")
+  f = File.new("#{File.absolute_path("blackjack_record")}/#{Date.today}.txt", "a")
   f.puts "#{plyr.name} at: #{Time.now}"
   f.puts "player hand value: #{deck.hand_score(player1)}"
   f.puts "dealer hand value: #{deck.hand_score(player2)}"

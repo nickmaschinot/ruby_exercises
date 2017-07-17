@@ -41,7 +41,7 @@ while true
       puts "Please only input integers or quit"
     else
       bet = bet.to_i
-      if bnkroll - bet < 0
+      if plyr.money - bet < 0
         p "You dont have enough money to place that bet"
         p "You have $#{plyr.money} remaining"
         p "Place a smaller bet:"
@@ -99,16 +99,17 @@ while true
   p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   p "--------------------------------------"
   if plyr.money == 0
+    puts "You are out of money"
     puts "Game over"
     break
   end
-  f = File.new("video_poker_record_#{Date.today}.txt", "a")
+  f = File.new("#{File.absolute_path("video_poker_record")}/#{Date.today}.txt", "a")
   f.puts "#{plyr.name} at: #{Time.now}"
   f.puts "player hand value: #{deck.hand_type(player1)}"
   f.puts "player money remaining: $#{plyr.money}"
   f.puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   f.close
-  
+
   p "you have $#{plyr.money}"
   p "play again? or QUIT?"
 end

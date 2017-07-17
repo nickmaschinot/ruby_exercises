@@ -212,7 +212,7 @@ module FiveCardDraw
       by_suit << k[1]
     end
     by_suit.sort!
-    by_value = sort_values(hand)
+    by_value = values(hand)
     frequency = by_value.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     frequency.values.sort.reverse!
     if all_equal?(by_suit)
