@@ -349,7 +349,7 @@ module FiveCardDraw
   def display(hand, name)
     x = 0
     y = 1
-    p "#{name} hand: "
+    p "#{name} hand: #{hand_type(hand)}"
     hand.count.times do |x|
       print "#{y}: #{hand[x][0]} of #{hand[x][1]}s | \n"
       x += 1
@@ -372,19 +372,60 @@ module FiveCardDraw
     key = TYPES.index(type)
     values = values(hand)
     suits = suits(hand)
-    while true
-      if key == 6
-        #discard two cards not in 3-of-a-kind
-      elsif key == 7
-        #discard the one card not part of Two-Pair
-      elsif key == 8
-        #discard three cards not part of pair
-      elsif key == 9
-        #manage how to either play for a straight, play for a flush, or toss hand
+    discard = []
+    if key == 6 || key == 7 || key == 8
+      p "calling pair based"
+      discard = opponent_discard(hand)
+    elsif key == 9
+      p "calling high card"
+      discard = opponent_high_card_discard(hand)
+    else
+      nil
+    end
+    discard
+  end
+
+  def opponent_discard(hand)
+    discard = []
+    save = []
+    hand.count.times do |x|
+      p hand[x]
+      if x < 4
+        if hand[x][2] == hand[x+1][2] || hand[x][2] == hand[x-1][2]
+          save << hand[x]
+          p "yay"
+        else
+          discard << x
+          p "nay"
+        end
+      end
+      if x == 4
+        if hand[x][2] == hand[x-1][2]
+          save << hand[x]
+          p "yay"
+        else
+          discard << x
+          p "nay"
+        end
+      end
+      x += 1
+    end
+    p "Your opponent discards #{discard.count}-cards"
+    discard
+  end
+
+  def opponent_high_card_discard(hand)
+    discard = []
+    save = []
+    hand.count.times do |x|
+      if hand[x][2] > 10
+        save << x
       else
-        break
+        discard << x
       end
     end
+    p "Your opponent discards #{discard.count}-cards"
+    discard
   end
 
   def high_card?(values1, values2)

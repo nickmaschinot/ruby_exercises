@@ -22,68 +22,6 @@ end
 deck = Game.new
 deck.shuffle_deck
 
-def opponent(hand, pot)
-  type = hand_type(hand)
-  key = TYPES.index(type)
-  values = values(hand)
-  suits = suits(hand)
-  discard = []
-  save = []
-  while true
-    if key == 6 || key == 7 || key == 8
-      discard = opponent_discard(hand)
-    elsif key == 9
-      discard = opponent_discard(hand)
-    else
-      break
-    end
-  end
-end
-
-def opponent_discard(hand)
-  discard = []
-  save = []
-  hand.count.times do |x|
-    p hand[x]
-    if x < 4
-      if hand[x][2] == hand[x+1][2] || hand[x][2] == hand[x-1][2]
-        save << hand[x]
-        p "yay"
-      else
-        discard << x
-        p "nay"
-      end
-    end
-    if x == 4
-      if hand[x][2] == hand[x-1][2]
-        save << hand[x]
-        p "yay"
-      else
-        discard << x
-        p "nay"
-      end
-    end
-    x += 1
-  end
-  p "Your opponent discards #{discard.count}-cards"
-  discard
-end
-
-def opponent_high_card_discard(hand)
-  discard = []
-  save = []
-  hand.count.times do |x|
-    if hand[x][2] > 10
-      save << x
-    else
-      discard << x
-    end
-  end
-  p "Your opponent discards #{discard.count}-cards"
-  discard
-end
-
-
 pot = 100
 
 sample_hand = deck.hand_new(5)
@@ -91,22 +29,15 @@ player2 = deck.hand_new(5)
 remainder = deck.hand_new(42)
 
 sample_hand = sample_hand.sort_by{|x| x[2]}
-discard = []
-save = []
-x = 0
-
 p sample_hand
 
-p opponent_high_card_discard(sample_hand)
-discard = opponent_high_card_discard(sample_hand)
+discard = deck.opponent(sample_hand, 0)
 p discard
 discard.each do |y|
   sample_hand = sample_hand.map{|x|x == sample_hand[y] ? remainder[0] : x}
   remainder.slice!(0)
 end
-p sample_hand
-p save
-p discard
+
 p sample_hand
 p pot
 
@@ -178,9 +109,25 @@ while true
     p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"
     remainder.slice!(0)
   end
-  deck.display(player1, "your")
+  player2 = player2.sort_by{|x| x[2]}
+  p player2
+  p "opponent's turn"
+  discard = deck.opponent(player2, 0)
+  discard.each do |y|
+    player2 = player2.map{|x|x == player2[y] ? remainder[0] : x}
+    remainder.slice!(0)
+  end
   p "--------------------------------------"
-  plyr.money += deck.score_hand(player1, bet)
+  deck.display(player1, "your")
+  deck.display(player2, "opponent's")
+  if deck.winner?(player1, player2, bet)
+    plyr.money += bet
+    p "you win the $#{bet * 2} pot"
+  else
+    plyr.money -= bet
+    p "you lose the $#{bet * 2} pot"
+  end
+
   p "--------------------------------------"
   p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   p "--------------------------------------"
