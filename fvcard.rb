@@ -38,18 +38,20 @@ discard.each do |y|
   remainder.slice!(0)
 end
 
-p sample_hand
-p pot
 
 
 p "Let's play some Poker"
 p "What's your name?"
 name = gets.chomp
+p "How many bots do you want to play against? (1 to 3)"
+players = gets.chomp.to_i + 1
+p players
 p "How much do you want to play with?"
 bnkroll = gets.chomp.to_i
 plyr = Player.new(name, bnkroll)
 p "Alright #{plyr.name}, let's play"
 while true
+  hands = []
   p "place your bet or type QUIT"
   while true
     bet = gets.chomp.downcase
@@ -72,9 +74,13 @@ while true
   p "--------------------------------------"
   deck = Game.new
   deck.shuffle_deck
-  player1 = deck.hand_new(5)
-  player2 = deck.hand_new(5)
-  remainder = deck.hand_new(42)
+  players.count.times do |x|
+    x = 1
+    player(x) = deck.hand_new(5)
+    hands << player(x)
+    x += 1
+  end
+  remainder = deck.hand_new(52 - (players * 5))
   deck.display(player1, "your")
   p "--------------------------------------"
   p "what cards do you want to get rid of before you draw?"
@@ -109,17 +115,26 @@ while true
     p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"
     remainder.slice!(0)
   end
-  player2 = player2.sort_by{|x| x[2]}
-  p player2
-  p "opponent's turn"
-  discard = deck.opponent(player2, 0)
-  discard.each do |y|
-    player2 = player2.map{|x|x == player2[y] ? remainder[0] : x}
-    remainder.slice!(0)
+  (players - 1).times do |x|
+    x = 2
+    player(x) = player(x).sort_by{|x| x[2]}
+    p player(x)
+    p "opponent's turn"
+    discard = deck.opponent(player(x), 0)
+    discard.each do |y|
+      player(x) = player(x).map{|x|x == player(x)[y] ? remainder[0] : x}
+      remainder.slice!(0)
+    end
+    x += 1
   end
   p "--------------------------------------"
   deck.display(player1, "your")
-  deck.display(player2, "opponent's")
+  (players - 1).times do |x|
+    x = 2
+    deck.display(player(x), "opponent #{x - 1}'s'")
+    x += 1
+  end
+
   if deck.winner?(player1, player2, bet)
     plyr.money += bet
     p "you win the $#{bet * 2} pot"

@@ -255,11 +255,10 @@ module FiveCardDraw
       if hand_score(player1, player2, type1, pot) == 0
         p "its a tie!, split the pot"
         pot = pot/2
+        pot
       elsif hand_score(player1, player2, type1, pot)
-        p "you win"
         true
       else
-        p "you lose"
         false
       end
     else
@@ -324,7 +323,7 @@ module FiveCardDraw
   def hand_value(values)
     @score = 0
     values.count.times do |x|
-        @score += values[x]
+      @score += values[x]
     end
     @score
   end
@@ -374,10 +373,8 @@ module FiveCardDraw
     suits = suits(hand)
     discard = []
     if key == 6 || key == 7 || key == 8
-      p "calling pair based"
       discard = opponent_discard(hand)
     elsif key == 9
-      p "calling high card"
       discard = opponent_high_card_discard(hand)
     else
       nil
@@ -393,19 +390,19 @@ module FiveCardDraw
       if x < 4
         if hand[x][2] == hand[x+1][2] || hand[x][2] == hand[x-1][2]
           save << hand[x]
-          p "yay"
+          #p "yay"
         else
           discard << x
-          p "nay"
+          #p "nay"
         end
       end
       if x == 4
         if hand[x][2] == hand[x-1][2]
           save << hand[x]
-          p "yay"
+          #p "yay"
         else
           discard << x
-          p "nay"
+          #p "nay"
         end
       end
       x += 1
