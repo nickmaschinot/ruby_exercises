@@ -262,7 +262,6 @@ module FiveCardDraw
         false
       end
     else
-      p "you lose"
       false
     end
   end
@@ -283,14 +282,11 @@ module FiveCardDraw
   def hand_score(hand1, hand2, type1, pot)
     key = TYPES.index(type1)
     values1 = values(hand1)
-    p values1.sort[0]
     values2 = values(hand2)
     frequency1 = values1.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     max1 = values1.max_by { |v| frequency1[v] }
-    p max1
     frequency2 = values2.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
     max2 = values2.max_by { |v| frequency2[v] }
-    p max2
     if key == 0
       pot = 0
     elsif key == 1 || key == 4 || key == 5 || key == 9
@@ -386,7 +382,6 @@ module FiveCardDraw
     discard = []
     save = []
     hand.count.times do |x|
-      p hand[x]
       if x < 4
         if hand[x][2] == hand[x+1][2] || hand[x][2] == hand[x-1][2]
           save << hand[x]

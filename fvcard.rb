@@ -19,27 +19,6 @@ class Player < Game
   end
 end
 
-deck = Game.new
-deck.shuffle_deck
-
-pot = 100
-
-sample_hand = deck.hand_new(5)
-player2 = deck.hand_new(5)
-remainder = deck.hand_new(42)
-
-sample_hand = sample_hand.sort_by{|x| x[2]}
-p sample_hand
-
-discard = deck.opponent(sample_hand, 0)
-p discard
-discard.each do |y|
-  sample_hand = sample_hand.map{|x|x == sample_hand[y] ? remainder[0] : x}
-  remainder.slice!(0)
-end
-
-
-
 p "Let's play some Poker"
 p "What's your name?"
 name = gets.chomp
@@ -72,14 +51,16 @@ while true
     end
   end
   p "--------------------------------------"
+  bet = bet * players
   deck = Game.new
   deck.shuffle_deck
-  players.count.times do |x|
-    x = 1
-    player(x) = deck.hand_new(5)
-    hands << player(x)
-    x += 1
+  players.times do |x|
+    _x = 1
+    player_x = deck.hand_new(5)
+    hands << player_x
+    _x += 1
   end
+  player1 = hands[0]
   remainder = deck.hand_new(52 - (players * 5))
   deck.display(player1, "your")
   p "--------------------------------------"
@@ -116,31 +97,40 @@ while true
     remainder.slice!(0)
   end
   (players - 1).times do |x|
-    x = 2
-    player(x) = player(x).sort_by{|x| x[2]}
-    p player(x)
+    hands[x+1] = hands[x+1].sort_by{|x| x[2]}
     p "opponent's turn"
-    discard = deck.opponent(player(x), 0)
+    discard = deck.opponent(hands[x+1], 0)
+    hand = hands[x+1]
     discard.each do |y|
-      player(x) = player(x).map{|x|x == player(x)[y] ? remainder[0] : x}
+      hands[x+1] = hands[x+1].map{|x|x == hand[y] ? remainder[0] : x}
       remainder.slice!(0)
     end
     x += 1
   end
   p "--------------------------------------"
   deck.display(player1, "your")
+
   (players - 1).times do |x|
-    x = 2
-    deck.display(player(x), "opponent #{x - 1}'s'")
+    deck.display(hands[x + 1], "opponent #{x + 1}'s'")
     x += 1
   end
 
-  if deck.winner?(player1, player2, bet)
-    plyr.money += bet
-    p "you win the $#{bet * 2} pot"
+  wins = []
+  (players - 1).times do |x, y|
+    if deck.winner?(player1, hands[x + 1], bet)
+      p "You beat opponent #{x + 1}"
+      wins << hands[x + 1]
+    else
+      p "You lost to opponent #{x + 1}"
+    end
+    x += 1
+  end
+  if wins.count == (players - 1)
+    plyr.money += (bet - bet/players)
+    p "you win the $#{bet} pot"
   else
-    plyr.money -= bet
-    p "you lose the $#{bet * 2} pot"
+    plyr.money -= bet/players
+    p "you lose the $#{bet} pot"
   end
 
   p "--------------------------------------"
