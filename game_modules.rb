@@ -439,20 +439,10 @@ module FiveCardDraw
               return true
             elsif values1[0] == values2[0]
               return false
-            else
-              return false
-            end
-          else
-            return false
-          end
-        else
-          return false
-        end
-      else
-        return false
-      end
-    else
-      return false
-    end
+            else; return false; end
+          else; return false; end
+        else; return false; end
+      else; return false; end
+    else; return false; end
   end
 end

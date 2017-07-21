@@ -24,11 +24,11 @@ p "What's your name?"
 name = gets.chomp
 p "How many bots do you want to play against? (1 to 3)"
 players = gets.chomp.to_i + 1
-p players
 p "How much do you want to play with?"
 bnkroll = gets.chomp.to_i
 plyr = Player.new(name, bnkroll)
 p "Alright #{plyr.name}, let's play"
+
 while true
   hands = []
   p "place your bet or type QUIT"
@@ -50,22 +50,23 @@ while true
       end
     end
   end
+
   p "--------------------------------------"
   bet = bet * players
   deck = Game.new
   deck.shuffle_deck
   players.times do |x|
-    _x = 1
     player_x = deck.hand_new(5)
     hands << player_x
-    _x += 1
   end
+
   player1 = hands[0]
   remainder = deck.hand_new(52 - (players * 5))
   deck.display(player1, "your")
   p "--------------------------------------"
   p "what cards do you want to get rid of before you draw?"
   discard = []
+
   while true
     p "type '1', '2', '3', '4', '5' to discard the cards you dont want."
     p "and 'draw' to replace them."
@@ -91,11 +92,13 @@ while true
       end
     end
   end
+
   discard.each do |y|
     player1 = player1.map{|x|x == player1[y] ? remainder[0] : x}
     p "You drew the #{remainder[0][0]} of #{remainder[0][1]}s"
     remainder.slice!(0)
   end
+
   (players - 1).times do |x|
     hands[x+1] = hands[x+1].sort_by{|x| x[2]}
     p "opponent's turn"
@@ -107,6 +110,7 @@ while true
     end
     x += 1
   end
+
   p "--------------------------------------"
   deck.display(player1, "your")
 
@@ -125,6 +129,7 @@ while true
     end
     x += 1
   end
+
   if wins.count == (players - 1)
     plyr.money += (bet - bet/players)
     p "you win the $#{bet} pot"
@@ -136,6 +141,7 @@ while true
   p "--------------------------------------"
   p "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   p "--------------------------------------"
+
   if plyr.money == 0
     puts "Game over"
     break
@@ -144,10 +150,8 @@ while true
   p "play again? or QUIT?"
 end
 
-pot = 100
-sample_hand = [["ten", "spade", 5], ["jack", "spade", 5],
-["queen", "spade", 10], ["king", "heart", 10], ["ace", "spade", 12]]
-sample_hand2 = [["ten", "spade", 5], ["jack", "spade", 5],
-["queen", "heart", 10], ["king", "spade", 10], ["ace", "spade", 10]]
-deck.winner?(sample_hand, sample_hand2, pot)
-p pot
+
+#sample_hand = [["ten", "spade", 5], ["jack", "spade", 5],
+#["queen", "spade", 10], ["king", "heart", 10], ["ace", "spade", 12]]
+#sample_hand2 = [["ten", "spade", 5], ["jack", "spade", 5],
+#["queen", "heart", 10], ["king", "spade", 10], ["ace", "spade", 10]]
