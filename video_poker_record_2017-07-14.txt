@@ -1,0 +1,68 @@
+Nick at: 2017-07-14 12:38:25 -0600
+player hand value: High-Card
+player money remaining: $95
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:38:49 -0600
+player hand value: High-Card
+player money remaining: $90
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:39:23 -0600
+player hand value: High-Card
+player money remaining: $85
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:39:36 -0600
+player hand value: Pair
+player money remaining: $85
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:39:52 -0600
+player hand value: High-Card
+player money remaining: $80
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:40:04 -0600
+player hand value: High-Card
+player money remaining: $75
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:40:14 -0600
+player hand value: Three-of-a-kind
+player money remaining: $85
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:40:49 -0600
+player hand value: High-Card
+player money remaining: $80
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:41:07 -0600
+player hand value: Three-of-a-kind
+player money remaining: $90
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:41:37 -0600
+player hand value: Two-Pair
+player money remaining: $110
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:41:53 -0600
+player hand value: Two-Pair
+player money remaining: $150
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:42:13 -0600
+player hand value: High-Card
+player money remaining: $70
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:42:35 -0600
+player hand value: Three-of-a-kind
+player money remaining: $210
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:43:11 -0600
+player hand value: Pair
+player money remaining: $210
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:36:48 -0600
+player hand value: Two-Pair
+player money remaining: $105
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:37:36 -0600
+player hand value: Pair
+player money remaining: $105
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 12:36:27 -0600
+player hand value: Pair
+player money remaining: $100
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

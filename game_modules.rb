@@ -43,8 +43,8 @@ module Blackjack
   #checks whether the evaluated hand is over 21 in value
   def bust?(hand, plyr, bet, name)
     if hand_score(hand) > 21
-      plyr.money -= bet
       p "#{name} is busted!"
+      plyr.money -= bet
     end
   end
   #displays the entirety of a given hand
@@ -385,19 +385,15 @@ module FiveCardDraw
       if x < 4
         if hand[x][2] == hand[x+1][2] || hand[x][2] == hand[x-1][2]
           save << hand[x]
-          #p "yay"
         else
           discard << x
-          #p "nay"
         end
       end
       if x == 4
         if hand[x][2] == hand[x-1][2]
           save << hand[x]
-          #p "yay"
         else
           discard << x
-          #p "nay"
         end
       end
       x += 1

@@ -1,0 +1,10 @@
+lili at: 2017-07-21 09:32:26 -0600
+player hand value: 22
+dealer hand value: 19
+player money remaining: $300
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+lili at: 2017-07-21 09:32:46 -0600
+player hand value: 18
+dealer hand value: 17
+player money remaining: $400
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -1,0 +1,5 @@
+Nick at: 2017-07-17 12:12:51 -0600
+player hand value: 21
+dealer hand value: 17
+player money remaining: $105
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

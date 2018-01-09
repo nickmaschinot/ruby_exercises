@@ -1,0 +1,125 @@
+nick at: 2018-01-08 17:14:09 -0500
+Rounds: 10
+Starting Funds: 100000
+Ending Funds: 101100.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:17:48 -0500
+Rounds: 10
+Starting Funds: 1000
+Ending Funds: 575.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:18:24 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 51125.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:19:10 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 23400.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:20:01 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 33550.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:20:29 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 20000.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:21:24 -0500
+Rounds: 1000
+Starting Funds: 1000000
+Ending Funds: 232475.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:22:03 -0500
+Rounds: 10000
+Starting Funds: 1000000
+Ending Funds: 118725.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:22:46 -0500
+Rounds: 1000
+Starting Funds: 1000000
+Ending Funds: 1092975.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:23:17 -0500
+Rounds: 1000
+Starting Funds: 1000000
+Ending Funds: 1183250.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:24:05 -0500
+Rounds: 1000
+Starting Funds: 1000000
+Ending Funds: 1267475.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 17:25:03 -0500
+Rounds: 1000
+Starting Funds: 1000000
+Ending Funds: 523275.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:15:20 -0500
+Rounds: 100
+Starting Funds: 100000
+Ending Funds: 106475.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:16:04 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 177800.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:16:36 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 259250.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:17:26 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 496625.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:18:36 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 943850.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:22:12 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 189800.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:22:36 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 287050.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 19:22:43 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 85300.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 22:03:44 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 82975.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 22:04:14 -0500
+Rounds: 100000
+Starting Funds: 100000
+Ending Funds: 6150.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 22:08:16 -0500
+Rounds: 10000
+Starting Funds: 100000
+Ending Funds: 5925.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 22:26:32 -0500
+Rounds: 10000
+Starting Funds: 100000
+Ending Funds: 303850.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-08 22:31:45 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 69150.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

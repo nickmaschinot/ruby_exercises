@@ -1,0 +1,15 @@
+Nick at: 2017-07-14 13:16:15 -0600
+player hand value: 20
+dealer hand value: 20
+player money remaining: $100
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 13:19:27 -0600
+player hand value: 19
+dealer hand value: 18
+player money remaining: $105
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Nick at: 2017-07-14 13:20:18 -0600
+player hand value: 23
+dealer hand value: 15
+player money remaining: $96
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
