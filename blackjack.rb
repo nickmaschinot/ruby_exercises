@@ -37,21 +37,22 @@ def record_simulation(plyr, bnkroll, rounds)
   f.close
 end
 
-def split_game(hand, plyr, bet, deck)
-  deck.display(hand, "your")
-  while true
-    p "Do you want to 'hit', or 'stand'?"
-    input = gets.chomp.downcase
-    if input == "hit"
-      hand += deck.hand_new(1)
-      #checks for bust
-      if deck.bust?(hand, plyr, bet, plyr.name); break; end
-    elsif input == "stand"
-      break
-    else
-      p "Please respond with 'hit' or 'stay'"
+def split_game(hand, plyr, bet, deck, ace)
+  if ace == false
+    while true
+      p "Do you want to 'hit', or 'stay'?"
+      input = gets.chomp.downcase
+      if input == "hit" && player1.count < 3
+        hand += deck.hand_new(1)
+        #checks for bust
+        if deck.bust?(hand, plyr, bet, plyr.name); break; end
+      elsif input == "stand"
+        break
+      else
+        p "Please respond with 'hit' or 'stay'"
+      end
+      deck.display(hand, "your")
     end
-    deck.display(hand, "your")
   end
   hand
 end
@@ -60,6 +61,8 @@ end
 def regular_play(bnkroll, plyr, rounds, bet)
   #generates and shuffles a new deck for each game
   original_bet = bet
+  split_hand_bet = bet
+  ace = false
   deck = Game.new
   deck.shuffle_deck
   player1 = deck.hand_new(2)
@@ -77,21 +80,32 @@ def regular_play(bnkroll, plyr, rounds, bet)
     #lets player hit or stand
     p "Do you want to 'hit', 'double' down, 'split', or 'stand'?"
     input = gets.chomp.downcase
-    if input == "hit"
+    if input == "hit" && ace == false
       player1 += deck.hand_new(1)
       #checks for bust
       if deck.bust?(player1, plyr, bet, plyr.name); break; end
     elsif input == "double" && player1.count < 3 && bet == original_bet
       bet = bet * 2
+      player1 += deck.hand_new(1)
+      break
     elsif input == "double" && (player1.count > 2 || bet != original_bet)
       p "you can't double down now"
-    elsif input == "split" && player1.count < 3
+    elsif input == "split" && player1.count < 3 && bet == original_bet
       if deck.pair?(player1)
+        if player1[1][2] == 14
+          ace = true
+        end
         player3 = deck.hand_new(1)
         player3[1] = player1[1]
         player1.pop
         player1 += deck.hand_new(1)
-        player3 = split_game(player3, plyr, bet, deck)
+        deck.display(player3, "your")
+        p "Do you want to 'double' down on this new hand?"
+        input = gets.chomp.downcase
+        if input == "yes"
+          split_hand_bet = bet * 2
+        end
+        player3 = split_game(player3, plyr, split_hand_bet, deck, ace)
       else
         p "you can't split unless you have a pair"
       end
@@ -109,7 +123,7 @@ def regular_play(bnkroll, plyr, rounds, bet)
     plyr.money += bet
   elsif player3 != nil
     deck.display(player3, "your second")
-    dealer(player3, final_hand, plyr, bet, deck)
+    dealer(player3, final_hand, plyr, split_hand_bet, deck)
   end
 
   p "--------------------------------------"
@@ -121,13 +135,14 @@ end
   #runs script for dealer behavior,
   #unless the game has been ended by blackjack or bust
 def dealer(player1, player2, plyr, bet, deck)
+  deck.display(player2, "The dealer's")
   unless deck.blackjack?(player1, plyr, 0) || deck.bust?(player1, plyr, 0, plyr.name)
     while true
       #dealer will hit unless he has 16
       if deck.hand_score(player2) <= 16
         p "Dealer hits"
         player2 += deck.hand_new(1)
-        if deck.bust?(player2, plyr, -(bet), "The dealer")
+        if deck.bust?(player2, plyr, -(bet), "The dealer's")
           player2
           break
         end
@@ -138,7 +153,7 @@ def dealer(player1, player2, plyr, bet, deck)
     end
     #unless the dealer has busted, the hands are evaluated against eachother
     unless deck.bust?(player2, plyr, 0, "The dealer")
-      deck.display_dealer(player2)
+      deck.display(player2, "The dealer")
       p "--------------------------------------"
       p deck.compare_hands(player1, player2, plyr, bet)
     end
@@ -171,7 +186,6 @@ def simulate_game(bnkroll, plyr, rounds)
               break
             end
           elsif deck.hand_score(player1) < 13
-            p "wow thats a low hand"
             player1 += deck.hand_new(1)
           else
             break

@@ -1,0 +1,15 @@
+nick at: 2018-01-12 12:42:03 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 18700.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-12 12:43:50 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 147650.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nick at: 2018-01-12 12:44:20 -0500
+Rounds: 1000
+Starting Funds: 100000
+Ending Funds: 103125.0
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
